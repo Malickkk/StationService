@@ -1,0 +1,40 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Paramètres de base - Modifier fournisseur{% endblock title %} 
+
+{% block idTitle %}modifierFournisseurID{% endblock idTitle %}
+{% block formTitle %}Modification de fournisseur{% endblock formTitle %} 
+{% block body %}
+<div class="row">
+    <div class="col-md-4 mb-0">
+        {{ modifierFournisseur.codfourn|as_crispy_field }}
+    </div>
+    <div class="col-md-8 mb-0">
+        {{ modifierFournisseur.raisonsoc|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 mb-0">
+        {{ modifierFournisseur.pays|as_crispy_field }}
+    </div>
+    <div class="col-md-4 mb-0">
+        {{ modifierFournisseur.ville|as_crispy_field }}
+    </div>
+    <div class="col-md-4 mb-0">
+        {{ modifierFournisseur.adrgeo|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 mb-0">
+        {{ modifierFournisseur.email|as_crispy_field }}
+    </div>
+    <div class="col-md-4 mb-0">
+        {{ modifierFournisseur.telresp1|as_crispy_field }}
+    </div>
+    <div class="col-md-4 mb-0">
+        {{ modifierFournisseur.telresp2|as_crispy_field }}
+    </div>
+</div>
+{% endblock body %} 
+{% block retour %}{% url 'fournisseurs' %}{% endblock retour %}

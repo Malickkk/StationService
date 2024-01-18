@@ -1,0 +1,48 @@
+{% extends "registration/base_login_register.html" %}
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<h1>S'enregistrer</h1>
+<form action="" method="post">
+    {% csrf_token %} 
+    <div class="form-group">
+        
+        {{ form.email }}
+        {{ form.email.errors }}
+
+    </div>
+    <div class="form-group">
+        
+        {{ form.first_name }}
+        {{ form.first_name.errors }}
+
+    </div>
+    <div class="form-group">
+        
+        {{ form.last_name }}
+        {{ form.last_name.errors }}
+
+    </div>
+    <div class="form-group">
+        
+        {{ form.datenaissance }}
+        {{ form.datenaissance.errors }}
+
+    </div>
+    <div class="form-group">
+        
+        {{ form.password1 }}
+        {{ form.password1.errors }}
+
+    </div>
+    <div class="form-group">
+        
+        {{ form.password2 }}
+        {{ form.password2.errors }}
+
+    </div>
+    <p>Have an account? Login <a href="/connexion">here</a></p>
+    <button type="submit">Register</button>
+</form>
+
+{% endblock %}

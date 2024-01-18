@@ -1,0 +1,11 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Paramètres de base - Créer un nouvel Article{% endblock title %} 
+
+{% block idTitle %}creerArticleID{% endblock idTitle %}
+{% block formTitle %}Création d'Article{% endblock formTitle %} 
+{% block body %}
+    {{ creerarticleForm|crispy }}
+{% endblock body %} 
+{% block retour %}{% url 'articles' %}{% endblock retour %}

@@ -1,0 +1,20 @@
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Famille d'Articles{% endblock %}
+
+{% block pageLink %}{% url 'famillearticlecreate'  %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des familles d'Articles{% endblock indexTitle %}
+
+{% block tableTitle %}Mes familles d'Articles{% endblock tableTitle %}
+
+{% block col1 %}Code famille d'Article{% endblock col1 %}
+{% block col2 %}Nom de famille d'Article{% endblock col2 %}
+{% block col3 %}Nature d'opération{% endblock col3 %}
+
+{% block value1 %}{{val.codfamille}}{% endblock value1 %}
+{% block value2 %}{{val.nomfamille}}{% endblock value2 %}
+{% block value3 %}{{val.idnatoperation}}{% endblock value3 %}
+
+{% block infoLink %}{% url 'Articleinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'Articleedit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'Articledelete' val.pk %}{% endblock deleteLink %}

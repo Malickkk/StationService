@@ -1,0 +1,29 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Création d'utilisateur{% endblock title %} 
+
+{% block idTitle %}creerUserID{% endblock idTitle %}
+{% block formTitle %}Création d'un utilisateur{% endblock formTitle %} 
+{% block body %}
+<div class="row">
+  <div class="col-md-6 mb-0">
+    {{ creerUserForm.nom|as_crispy_field }}
+  </div>
+  <div class="col-md-6 mb-0">
+    {{ creerUserForm.prenom|as_crispy_field }}
+  </div>
+</div>
+<div class="row">
+    {{ creerUserForm.email|as_crispy_field }}
+</div>
+<div class="row">
+    <div class="col-md-6 mb-0">
+      {{ creerUserForm.dob|as_crispy_field }}
+    </div>
+    <div class="col-md-6 mb-0">
+      {{ creerUserForm.profiluser|as_crispy_field }}
+    </div>
+</div>
+{% endblock body %} 
+{% block retour %}{% url 'users' %}{% endblock retour %}

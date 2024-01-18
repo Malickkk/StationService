@@ -1,0 +1,20 @@
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Utilisateurs{% endblock %}
+
+{% block pageLink %}{% url 'usercreate'  %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des utilisateurs{% endblock indexTitle %}
+
+{% block tableTitle %}Mes Utilisateurs{% endblock tableTitle %}
+
+{% block col1 %}Nom & Prénom{% endblock col1 %}
+{% block col2 %}E-mail{% endblock col2 %}
+{% block col3 %}Fonction{% endblock col3 %}
+
+{% block value1 %}{{val.nom}} {{val.prenom}}{% endblock value1 %}
+{% block value2 %}{{val.email}}{% endblock value2 %}
+{% block value3 %}{{val.profiluser}}{% endblock value3 %}
+
+{% block infoLink %}{% url 'userinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'useredit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'userdelete' val.pk %}{% endblock deleteLink %}

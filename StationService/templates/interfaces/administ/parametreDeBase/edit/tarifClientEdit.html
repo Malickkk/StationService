@@ -1,0 +1,28 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Modification{% endblock title %}
+{% block idTitle %}editTarifClientID{% endblock idTitle %}
+{% block formTitle %}Modification de tarif de client{% endblock formTitle %} 
+{% block body %}
+<div class="row">
+    <div class="col-md-4 mb-0">
+      {{ modifierTarifClient.clients|as_crispy_field }}
+    </div>
+    <div class="col-md-4 mb-0">
+      {{ modifierTarifClient.idArticle|as_crispy_field }}
+    </div>
+    <div class="col-md-4 mb-0">
+      {{ modifierTarifClient.monttarif|as_crispy_field }}
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6 mb-0">
+        {{ modifierTarifClient.datedebut|as_crispy_field }}
+      </div>
+      <div class="col-md-6 mb-0">
+        {{ modifierTarifClient.datefin|as_crispy_field }}
+      </div>
+  </div>
+{% endblock body %} 
+{% block retour %}{% url 'tarifClient' %}{% endblock retour %}

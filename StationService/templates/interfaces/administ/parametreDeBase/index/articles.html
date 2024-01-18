@@ -1,0 +1,21 @@
+
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Articles{% endblock %}
+
+{% block pageLink %}{% url 'articlecreate'  %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des Articles{% endblock indexTitle %}
+
+{% block tableTitle %}Mes Articles{% endblock tableTitle %}
+
+{% block col1 %}Code Article{% endblock col1 %}
+{% block col2 %}Nom de l'Article{% endblock col2 %}
+{% block col3 %}Famille de l'Article{% endblock col3 %}
+
+{% block value1 %}{{val.codArticle}}{% endblock value1 %}
+{% block value2 %}{{val.nomArticle}}{% endblock value2 %}
+{% block value3 %}{{val.idfamille}}{% endblock value3 %}
+
+{% block infoLink %}{% url 'Articleinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'Articleedit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'Articledelete' val.pk %}{% endblock deleteLink %}

@@ -1,0 +1,81 @@
+{% extends "interfaces/administ/baseAdmin.html" %}
+{% load bootstrap_icons %}
+{% block content %}
+      
+<div class="container">
+    <h3 class="text-center" id="{% block idTitle %}{% endblock idTitle %}">
+        {% block indexTitle %}{% endblock indexTitle %}
+    </h3>
+
+    <div class="row">
+        <div class="col-md-6 mb-0">
+            <a class="btn btn-primary" type="button" name="button"
+            href="{% block pageLink %}{% endblock pageLink %}"
+            data-toggle="tooltip-create" title="Créer">
+            {% bs_icon 'plus-circle' %}
+        </a>
+        </div>
+        <div class="col-md-6 mb-0">
+            <input type="text" id="myInput" onkeyup="myFunction()" 
+        placeholder="Recherche..." title="Entrer votre recherche">
+        </div>
+    </div>
+    
+    <table id="myTable" class="table table-hover">
+        <caption>{% block tableTitle %}{% endblock tableTitle %}</caption>
+        <thead>
+            <th class="text-center" scope="col">#</th>
+            <th class="text-center" scope="col">{% block col1 %}{% endblock col1 %}</th>
+            <th class="text-center" scope="col">{% block col2 %}{% endblock col2 %}</th>
+            <th class="text-center" scope="col">{% block col3 %}{% endblock col3 %}</th>
+            <th class="text-center" scope="col">Actions</th>
+        </thead>
+
+        <tbody>
+            {% for val in values %}
+            
+            <tr>
+                <th class="text-center" scope="row">{{ forloop.counter }}</th>
+                <td class="text-center" scope="row">{% block value1 %}{% endblock value1 %}</td>
+                <td class="text-center" scope="row">{% block value2 %}{% endblock value2 %}</td>
+                <td class="text-center" scope="row">{% block value3 %}{% endblock value3 %}</td>
+                <td class="text-center" scope="row">
+                    <a type=button class="btn btn-secondary" 
+                    href="{% block infoLink %}{% endblock infoLink %}"
+                    data-toggle="tooltip-info" title="Info">{% bs_icon 'info-circle' %}</a>
+                    <a type=button class="btn btn-secondary" 
+                    href="{% block editLink %}{% endblock editLink %}"
+                    data-toggle="tooltip-edit" title="Modifier">{% bs_icon 'gear' %}</a>
+                    <a type=button class="btn btn-danger" 
+                    href="{% block deleteLink %}{% endblock deleteLink %}"
+                    data-toggle="tooltip-delete" title="Supprimer">{% bs_icon 'trash' %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
+  
+{% block extrascripts %}
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+{% endblock extrascripts %}

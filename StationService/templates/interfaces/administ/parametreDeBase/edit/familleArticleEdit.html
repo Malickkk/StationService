@@ -1,0 +1,11 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Paramètres de base - Modifier famille Article{% endblock title %} 
+
+{% block idTitle %}modifierFamilleArticleID{% endblock idTitle %}
+{% block formTitle %}Modification de famille d'Articles{% endblock formTitle %} 
+{% block body %}
+    {{ modifierFamilleArticle|crispy }}
+{% endblock body %} 
+{% block retour %}{% url 'familleArticles' %}{% endblock retour %}

@@ -1,0 +1,11 @@
+{% extends "interfaces/administ/infoTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Paramètres de base - Info sur Article{% endblock title %} 
+
+{% block idTitle %}creerArticleID{% endblock idTitle %}
+{% block formTitle %}Information d'Article{% endblock formTitle %} 
+{% block body %}
+    {{ infoarticle|crispy }}
+{% endblock body %} 
+{% block retour %}{% url 'Articles' %}{% endblock retour %}

@@ -1,0 +1,16 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Suppression{% endblock title %} 
+
+{% block idTitle %}deleteStationID{% endblock idTitle %}
+{% block formTitle %}Suppression de station services{% endblock formTitle %} 
+{% block body %}
+<div>
+    <form method="post">
+        Supprimer {{station}}? 
+    </form>
+   
+</div>
+{% endblock body %} 
+{% block retour %}{% url 'stationServices' %}{% endblock retour %}
