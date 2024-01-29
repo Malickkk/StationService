@@ -46,7 +46,7 @@ def stationEdit(request, pk):
 
 @csrf_exempt
 def stationInfo(request, pk):
-    station = Stationservice.objects.get(idstation=pk)
+    station = get_object_or_404(Stationservice, idstation=pk)
     infostation = stationServiceForm(request.POST or None, instance=station)
     context = {'infostation': infostation}
     return render(request, folderLocation+'info/stationInfo.html', context)
@@ -92,7 +92,7 @@ def userEdit(request, pk):
 
 @csrf_exempt
 def userInfo(request, pk):
-    user = Utilisateur.objects.get(iduser=pk)
+    user = get_object_or_404(Utilisateur, iduser=pk)
     infoUser = utilisateurForm(request.POST or None, instance=user)
     context = {'infoUser': infoUser}
     return render(request, folderLocation+'info/userInfo.html', context)
@@ -117,7 +117,7 @@ def articles(request):
 @csrf_exempt
 def creerArticle(request):
     if request.method == 'POST':
-        creerarticleForm = Article(request.POST)
+        creerarticleForm = articleForm(request.POST)
         if creerarticleForm.is_valid():
             creerarticleForm.save()
             return redirect('articles')
@@ -138,7 +138,7 @@ def articleEdit(request, pk):
 
 @csrf_exempt
 def articleInfo(request, pk):
-    article = Article.objects.get(idarticle=pk)
+    article = get_object_or_404(Article, idarticle=pk)
     infoarticle = articleForm(request.POST or None, instance=article)
     context = {'infoarticle': infoarticle}
     return render(request, folderLocation+'info/articleInfo.html', context)
@@ -184,7 +184,7 @@ def tarifEdit(request, pk):
 
 @csrf_exempt
 def tarifInfo(request, pk):
-    tarif = Tarif.objects.get(idtarif=pk)
+    tarif = get_object_or_404(Tarif, idtarif=pk)
     infoTarif = tarifForm(request.POST or None, instance=tarif)
     print(tarif.datedebut - tarif.datefin)
     context = {'infoTarif': infoTarif}
@@ -202,47 +202,47 @@ def tarifDelete(request, pk):
 
 # ************* Section Famille articles *************
 
-def famillearticles(request):
-    famillearticles = Famillearticle.objects.all()
-    context={'values' : famillearticles}
+def familleArticles(request):
+    familleArticles = FamilleArticle.objects.all()
+    context={'values' : familleArticles}
     return render(request, folderLocation+'index/familleArticles.html', context)
 
 @csrf_exempt
-def famillearticleCreate(request):
+def familleArticleCreate(request):
     if request.method == 'POST':
-        creerFamillearticleForm = famillearticleForm(request.POST)
-        if creerFamillearticleForm.is_valid():
-            creerFamillearticleForm.save()
-            return redirect('famillearticles')
+        creerfamilleArticleForm = familleArticleForm(request.POST)
+        if creerfamilleArticleForm.is_valid():
+            creerfamilleArticleForm.save()
+            return redirect('familleArticles')
     else:
-        creerFamillearticleForm = famillearticleForm()
-    context={'creerFamillearticleForm' : creerFamillearticleForm}
+        creerfamilleArticleForm = familleArticleForm()
+    context={'creerfamilleArticleForm' : creerfamilleArticleForm}
     return render(request, folderLocation+'create/familleArticleCreate.html', context)
 
 @csrf_exempt
-def famillearticleEdit(request, pk):
-    famillearticle = get_object_or_404(famillearticles, idfamille=pk)
-    modifierFamillearticle = famillearticleForm(request.POST or None, instance=famillearticle)
-    if modifierFamillearticle.is_valid():
-        modifierFamillearticle.save()
-        return redirect('famillearticles')
-    context = {'modifierFamillearticle': modifierFamillearticle}
+def familleArticleEdit(request, pk):
+    familleArticle = get_object_or_404(FamilleArticle, idfamille=pk)
+    modifierfamilleArticle = familleArticleForm(request.POST or None, instance=familleArticle)
+    if modifierfamilleArticle.is_valid():
+        modifierfamilleArticle.save()
+        return redirect('familleArticles')
+    context = {'modifierfamilleArticle': modifierfamilleArticle}
     return render(request, folderLocation+'edit/familleArticleEdit.html', context)
 
 @csrf_exempt
-def famillearticleInfo(request, pk):
-    famillearticle = famillearticles.objects.get(idfamille=pk)
-    infofamillearticle = famillearticleForm(request.POST or None, instance=famillearticle)
-    context = {'infofamillearticle': infofamillearticle}
+def familleArticleInfo(request, pk):
+    familleArticle = get_object_or_404(FamilleArticle, idfamille=pk)
+    infofamilleArticle = familleArticleForm(request.POST or None, instance=familleArticle)
+    context = {'infofamilleArticle': infofamilleArticle}
     return render(request, folderLocation+'info/familleArticleInfo.html', context)
 
 @csrf_exempt
-def famillearticleDelete(request, pk):
-    famillearticle = get_object_or_404(famillearticles, idfamille=pk)
+def familleArticleDelete(request, pk):
+    familleArticle = get_object_or_404(familleArticle, idfamille=pk)
     if request.method == 'POST':
-        famillearticle.delete()
-        return redirect('famillearticles')
-    context = {'famillearticle': famillearticle}
+        familleArticle.delete()
+        return redirect('familleArticles')
+    context = {'familleArticle': familleArticle}
     return render(request, folderLocation+'delete/familleArticleDelete.html', context)
 
 
@@ -267,8 +267,8 @@ def clientCreate(request):
 
 @csrf_exempt
 def clientEdit(request, pk):
-    Client = get_object_or_404(Client, idcli=pk)
-    modifierClient = clientForm(request.POST or None, instance=Client)
+    client = get_object_or_404(Client, idcli=pk)
+    modifierClient = clientForm(request.POST or None, instance=client)
     if modifierClient.is_valid():
         modifierClient.save()
         return redirect('clients')
@@ -277,8 +277,8 @@ def clientEdit(request, pk):
 
 @csrf_exempt
 def clientInfo(request, pk):
-    Client = Client.objects.get(idcli=pk)
-    infoClient = clientForm(request.POST or None, instance=Client)
+    client = Client.objects.get(idcli=pk)
+    infoClient = clientForm(request.POST or None, instance=client)
     context = {'infoClient': infoClient}
     return render(request, folderLocation+'info/clientInfo.html', context)
 
@@ -323,7 +323,7 @@ def tarifClientEdit(request, pk):
 
 @csrf_exempt
 def tarifClientInfo(request, pk):
-    tarifClient = TarifsClient.objects.get(idtarcli=pk)
+    tarifClient = get_object_or_404(TarifsClient, idtarcli=pk)
     infoTarifClient = tarifClientForm(request.POST or None, instance=tarifClient)
     context = {'infoTarifClient': infoTarifClient}
     return render(request, folderLocation+'info/tarifClientInfo.html', context)
@@ -369,7 +369,7 @@ def fournisseurEdit(request, pk):
 
 @csrf_exempt
 def fournisseurInfo(request, pk):
-    fournisseur = Fournisseur.objects.get(idfourn=pk)
+    fournisseur = get_object_or_404(Fournisseur, idfourn=pk)
     infoFournisseur = fournForm(request.POST or None, instance=fournisseur)
     context = {'infoFournisseur': infoFournisseur}
     return render(request, folderLocation+'info/fournisseurInfo.html', context)
@@ -415,7 +415,7 @@ def tarifFournisseurEdit(request, pk):
 
 @csrf_exempt
 def tarifFournisseurInfo(request, pk):
-    tarifFournisseur = Fournisseur.objects.get(idtarfourn=pk)
+    tarifFournisseur = get_object_or_404(Tarifsfourn, idtarfourn=pk)
     infoTarifFournisseur = tarifFournForm(request.POST or None, instance=tarifFournisseur)
     context = {'infoTarifFournisseur': infoTarifFournisseur}
     return render(request, folderLocation+'info/tarifFournisseurInfo.html', context)
@@ -461,7 +461,7 @@ def natOpEdit(request, pk):
 
 @csrf_exempt
 def natOpInfo(request, pk):
-    natOp = Natoperation.objects.get(idnatope=pk)
+    natOp = get_object_or_404(Natoperation, idnatope=pk)
     infoNatOp = natOpForm(request.POST or None, instance=natOp)
     context = {'infoNatOp': infoNatOp}
     return render(request, folderLocation+'info/natOpInfo.html', context)
@@ -474,5 +474,3 @@ def natOpDelete(request, pk):
         return redirect('natOps')
     context = {'natOp': natOp}
     return render(request, folderLocation+'delete/natOpDelete.html', context)
-
-

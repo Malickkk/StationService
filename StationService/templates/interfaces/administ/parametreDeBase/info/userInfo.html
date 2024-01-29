@@ -5,7 +5,6 @@
 {% block formTitle %}Information d'utilisateur{% endblock formTitle %} 
 
 {% block body %} 
-<fieldset disabled>
 <div class="row">
    <div class="col-md-6 mb-0">
      {{ infoUser.nom|as_crispy_field }}
@@ -25,6 +24,5 @@
        {{ infoUser.profiluser|as_crispy_field }}
      </div>
  </div>
-</fieldset>
 {% endblock body %}
 {% block retour %}{% url 'users' %}{% endblock retour %}

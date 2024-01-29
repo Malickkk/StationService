@@ -12,11 +12,7 @@ FONCTION_CHOICES = (
 class DateInput(forms.DateInput):
     input_type = 'date'
     
-dateInput = DateInput(
-                format='%d/%m/%Y',
-                attrs={
-                'class': 'form-control', 
-                })
+dateInput = DateInput(attrs={'class': 'form-control'})
 
 class stationServiceForm(forms.ModelForm):
     class Meta:
@@ -50,9 +46,9 @@ class articleForm(forms.ModelForm):
             }
 
 
-class famillearticleForm(forms.ModelForm):
+class familleArticleForm(forms.ModelForm):
     class Meta:
-        model = Famillearticle
+        model = FamilleArticle
         fields = '__all__'
         labels = {
             'codfamille': "Code famille", 
@@ -128,12 +124,12 @@ class utilisateurForm(forms.ModelForm):
 class natOpForm(forms.ModelForm):
     class Meta:
         model = Natoperation
-        fields = ('codope', 'libope')
+        fields = '__all__'
         labels = {
             'codope':"Code nature opération",
             'libope':"Libellé opération",
-            # 'saiqte':"Saisie quantité",
-            # 'saival':"Saisie valeur",
+            'saiqte':"Saisie quantité",
+            'saival':"Saisie valeur",
         }
 
 class clientForm(forms.ModelForm):

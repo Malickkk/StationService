@@ -14,7 +14,11 @@
 
 {% block value1 %}{{val.codope}}{% endblock value1 %}
 {% block value2 %}{{val.libope}}{% endblock value2 %}
-{% block value3 %}{{val.saiqte}} - {{val.saival}}{% endblock value3 %}
+{% block value3 %}Quantité :
+{% if val.saiqte %} Oui {% else %} Non{% endif %}
+- Valeur :
+{% if val.saival %} Oui {% else %} Non{% endif %}
+{% endblock value3 %}
 
 {% block infoLink %}{% url 'natOpinfo' val.pk %}{% endblock infoLink %}
 {% block editLink %}{% url 'natOpedit' val.pk %}{% endblock editLink %}

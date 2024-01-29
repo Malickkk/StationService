@@ -12,53 +12,6 @@ from django.db.models.signals import post_save
 from django_countries.fields import CountryField
 
 
-class Article(models.Model):
-    idArticle = models.AutoField(primary_key=True)
-    codArticle = models.CharField(db_column='CodArticle', max_length=10)  # Field name made lowercase.
-    nomArticle = models.CharField(max_length=40)
-    idfamille = models.IntegerField( )
-
-    class Meta:
-        managed = True
-        db_table = 'articles'
-        
-    
-    def __str__(self):
-        return self.nomArticle
-
-
-class Client(models.Model):# ajouter: raison sociale 
-    idcli = models.AutoField(primary_key=True)
-    codcli = models.CharField(unique=True, max_length=10)
-    raisonsoc = models.CharField(max_length=255)
-    pays = CountryField( )
-    ville = models.CharField(max_length=100)
-    adrgeo = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    telresp1 = models.CharField(max_length=40)
-    telresp2 = models.CharField(max_length=40)
-
-    class Meta:
-        managed = True
-        db_table = 'clients'
-        
-
-    def __str__(self):
-        return self.raisonsoc
-
-
-
-class Ctrcaisse(models.Model):
-    idctrcaisse = models.AutoField(primary_key=True)
-    codcaisse = models.CharField(max_length=20)
-    typctr = models.IntegerField( )
-
-    class Meta:
-        managed = True
-        db_table = 'ctrcaisse'
-        
-
-
 class Utilisateur(models.Model):
     iduser = models.AutoField(primary_key=True)
     email = models.CharField(max_length=255, unique=True)
@@ -100,10 +53,58 @@ class Stationservice(models.Model):
     def __str__(self):
         return 'Station ' + self.codstation
 
+
+class Natoperation(models.Model): #vente de carburant
+
+    idnatope = models.AutoField(primary_key=True)
+    codope = models.CharField(max_length=20)
+    libope = models.CharField(max_length=40)
+    saiqte = models.BooleanField( )
+    saival = models.BooleanField( )
+
+    class Meta:
+        managed = True
+        db_table = 'natoperation'
+        
+
+    
+    def __str__(self):
+        return self.libope
+
+
+class FamilleArticle(models.Model):
+    idfamille = models.AutoField(primary_key=True)
+    codfamille = models.CharField(unique=True, max_length=10)
+    nomfamille = models.CharField(max_length=40)
+    idnatoperation = models.ForeignKey(Natoperation, on_delete=models.CASCADE, db_column='idnatoperation')
+
+    class Meta:
+        managed = True
+        db_table = 'FamilleArticle'
+
+    def __str__(self):
+        return self.nomfamille
+        
+
+class Article(models.Model):
+    idarticle = models.AutoField(primary_key=True)
+    codArticle = models.CharField(db_column='CodArticle', max_length=10)  # Field name made lowercase.
+    nomArticle = models.CharField(max_length=40)
+    idfamille = models.ForeignKey(FamilleArticle, on_delete=models.CASCADE, db_column='idfamille')
+
+    class Meta:
+        managed = True
+        db_table = 'articles'
+        
+    
+    def __str__(self):
+        return self.nomArticle
+
+
 class Cuve(models.Model):
     idcuve = models.AutoField(primary_key=True)
     codecuve = models.CharField(unique=True, max_length=10)
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     nomcuve = models.CharField(max_length=40)
     capcuve = models.IntegerField( )
     idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
@@ -111,8 +112,37 @@ class Cuve(models.Model):
     class Meta:
         managed = True
         db_table = 'cuves'
+
+
+class Client(models.Model):# ajouter: raison sociale 
+    idcli = models.AutoField(primary_key=True)
+    codcli = models.CharField(unique=True, max_length=10)
+    raisonsoc = models.CharField(max_length=255)
+    pays = CountryField( )
+    ville = models.CharField(max_length=100)
+    adrgeo = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    telresp1 = models.CharField(max_length=40)
+    telresp2 = models.CharField(max_length=40)
+
+    class Meta:
+        managed = True
+        db_table = 'clients'
         
 
+    def __str__(self):
+        return self.raisonsoc
+
+
+class Ctrcaisse(models.Model):
+    idctrcaisse = models.AutoField(primary_key=True)
+    codcaisse = models.CharField(max_length=20)
+    typctr = models.IntegerField( )
+
+    class Meta:
+        managed = True
+        db_table = 'ctrcaisse'
+        
 
 class Bilanjournalier(models.Model):
     idbilan = models.AutoField(primary_key=True)
@@ -128,7 +158,6 @@ class Bilanjournalier(models.Model):
         db_table = 'bilanjournalier'
         
 
-
 class Detblcarburant(models.Model):
     iddetblcar = models.AutoField(primary_key=True)
     identblcar = models.IntegerField( )
@@ -140,13 +169,12 @@ class Detblcarburant(models.Model):
     class Meta:
         managed = True
         db_table = 'detblcarburant'
-        
 
 
 class Detblgaz(models.Model):
     iddetblgaz = models.AutoField(primary_key=True)
     identblgaz = models.IntegerField( )
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     qtedetliv = models.IntegerField( )
     mondetliv = models.IntegerField( )
     remarkdet = models.CharField(max_length=255)
@@ -154,13 +182,12 @@ class Detblgaz(models.Model):
     class Meta:
         managed = True
         db_table = 'detblgaz'
-        
 
 
 class Detbllub(models.Model):
     iddetbllub = models.AutoField(primary_key=True)
     identbllub = models.IntegerField( )
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     qtedetliv = models.IntegerField( )
     mondetliv = models.IntegerField( )
     remarkdet = models.CharField(max_length=255)
@@ -168,7 +195,7 @@ class Detbllub(models.Model):
     class Meta:
         managed = True
         db_table = 'detbllub'
-        
+
 
 class Fournisseur(models.Model):
     idfourn = models.AutoField(primary_key=True)
@@ -205,7 +232,7 @@ class Journeescomptable(models.Model):
 class Entblcarburant(models.Model):
     identblcar = models.AutoField(primary_key=True)
     idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     idjournee = models.IntegerField( )
     datemvt = models.DateField( )
     numbl = models.CharField(max_length=20)
@@ -219,23 +246,6 @@ class Entblcarburant(models.Model):
     class Meta:
         managed = True
         db_table = 'entblcarburant'
-        
-
-class Natoperation(models.Model): #vente de carburant
-    idnatope = models.AutoField(primary_key=True)
-    codope = models.CharField(max_length=20)
-    libope = models.CharField(max_length=40)
-    saiqte = models.BooleanField( )
-    saival = models.BooleanField( )
-
-    class Meta:
-        managed = True
-        db_table = 'natoperation'
-        
-
-    
-    def __str__(self):
-        return self.libope
 
         
 class Entblgaz(models.Model):
@@ -253,7 +263,6 @@ class Entblgaz(models.Model):
     class Meta:
         managed = True
         db_table = 'entblgaz'
-        
 
 
 class Entbllub(models.Model):
@@ -271,19 +280,6 @@ class Entbllub(models.Model):
     class Meta:
         managed = True
         db_table = 'entbllub'
-        
-
-
-class Famillearticle(models.Model):
-    idfamille = models.AutoField(primary_key=True)
-    codfamille = models.CharField(unique=True, max_length=10)
-    nomfamille = models.CharField(max_length=40)
-    idnatoperation = models.ForeignKey(Natoperation, on_delete=models.CASCADE, db_column='idnatoperation')
-
-    class Meta:
-        managed = True
-        db_table = 'familleArticle'
-        
 
 
 class Lignebilan(models.Model):
@@ -294,14 +290,13 @@ class Lignebilan(models.Model):
     class Meta:
         managed = True
         db_table = 'lignebilan'
-        
 
 
 class Mvtpompecarburant(models.Model):
     idmvtpompe = models.AutoField(primary_key=True)
     idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
     idcuve = models.ForeignKey(Cuve, on_delete=models.CASCADE, db_column='idcuve')
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     idpompe = models.IntegerField( )
     idjournee = models.ForeignKey(Journeescomptable, on_delete=models.CASCADE, db_column='idjournee')
     datemvt = models.DateField( )
@@ -316,7 +311,6 @@ class Mvtpompecarburant(models.Model):
     class Meta:
         managed = True
         db_table = 'mvtpompecarburant'
-        
 
 
 class Mvtscaisse(models.Model):
@@ -338,7 +332,6 @@ class Mvtscaisse(models.Model):
     class Meta:
         managed = True
         db_table = 'mvtscaisse'
-        
 
 
 class Mvtsclient(models.Model):
@@ -358,13 +351,12 @@ class Mvtsclient(models.Model):
     class Meta:
         managed = True
         db_table = 'mvtsclients'
-        
 
 
 class Mvtsgaz(models.Model):
     idmvtgaz = models.AutoField(primary_key=True)
     idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     idjournee = models.ForeignKey(Journeescomptable, on_delete=models.CASCADE, db_column='idjournee')
     datemvt = models.DateField( )
     qtestktheojm1 = models.IntegerField( )
@@ -389,13 +381,12 @@ class Mvtsgaz(models.Model):
     class Meta:
         managed = True
         db_table = 'mvtsgaz'
-        
 
 
 class Mvtsodiverse(models.Model):
     idmvtod = models.AutoField(primary_key=True)
     idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     idjournee = models.ForeignKey(Journeescomptable, on_delete=models.CASCADE, db_column='idjournee')
     datemvt = models.DateField( )
     numveh = models.CharField(max_length=30)
@@ -409,7 +400,6 @@ class Mvtsodiverse(models.Model):
     class Meta:
         managed = True
         db_table = 'mvtsodiverses'
-        
 
 
 class Natopecaisse(models.Model):
@@ -422,33 +412,17 @@ class Natopecaisse(models.Model):
         db_table = 'natopecaisse'
 
 
-
-
-
-# class Pay(models.Model):
-#     pays = CountryFieldimary_key=True)
-#     codpays = models.CharField(unique=True, max_length=2)
-#     nompays = models.CharField(max_length=40)
-#   
-
-#     class Meta:
-#         managed = True
-#         db_table = 'pays'
-#         
-
-
 class Pompecuve(models.Model):
     idpompe = models.IntegerField( )
     codpompe = models.CharField(unique=True, max_length=10)
     descrpompe = models.CharField(max_length=40)
     idcuve = models.ForeignKey(Cuve, on_delete=models.CASCADE, db_column='idcuve')
     idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
 
     class Meta:
         managed = True
         db_table = 'pompecuve'
-        
 
 
 class Regclient(models.Model):
@@ -466,13 +440,12 @@ class Regclient(models.Model):
     class Meta:
         managed = True
         db_table = 'regclients'
-        
 
 
 class StatArticle(models.Model):
     idstatart = models.AutoField(primary_key=True)
-    idfamille = models.ForeignKey(Famillearticle, on_delete=models.CASCADE, db_column='idfamille')
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idfamille = models.ForeignKey(FamilleArticle, on_delete=models.CASCADE, db_column='idfamille')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     periode = models.IntegerField( )
     qteachat = models.IntegerField( )
     mntachat = models.IntegerField( )
@@ -482,14 +455,13 @@ class StatArticle(models.Model):
     class Meta:
         managed = True
         db_table = 'statArticles'
-        
 
 
 class Stockcarburant(models.Model):
     idstck = models.AutoField(primary_key=True)
     idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
     idcuve = models.ForeignKey(Cuve, on_delete=models.CASCADE, db_column='idcuve')
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     idjournee = models.ForeignKey(Journeescomptable, on_delete=models.CASCADE, db_column='idjournee')
     datemvt = models.DateField( )
     qtestktheojm1 = models.IntegerField( )
@@ -511,13 +483,12 @@ class Stockcarburant(models.Model):
     class Meta:
         managed = True
         db_table = 'stockcarburant'
-        
 
 
 class Stocklubacc(models.Model):
     idstklub = models.AutoField(primary_key=True)
     idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     idjournee = models.ForeignKey(Journeescomptable, on_delete=models.CASCADE, db_column='idjournee')
     datemvt = models.DateField( )
     qtestktheojm1 = models.IntegerField( )
@@ -539,12 +510,11 @@ class Stocklubacc(models.Model):
     class Meta:
         managed = True
         db_table = 'stocklubacc'
-        
 
 
 class Tarif(models.Model):
     idtarif = models.AutoField(primary_key=True)
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     datedebut = models.DateField( )
     datefin = models.DateField( )
     monttarif = models.FloatField( )
@@ -555,13 +525,13 @@ class Tarif(models.Model):
         
 
     def __str__(self):
-        return self.idArticle.nomArticle
+        return self.idarticle.nomArticle
 
 
 class TarifsClient(models.Model):
     idtarcli = models.AutoField(primary_key=True)
     clients = models.ForeignKey(Client, on_delete=models.CASCADE, db_column='idcli')
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     datedebut = models.DateField( )
     datefin = models.DateField( )
     monttarif = models.FloatField( )
@@ -578,7 +548,7 @@ class TarifsClient(models.Model):
 class Tarifsfourn(models.Model):
     idtarfourn = models.AutoField(primary_key=True)
     idfourn = models.ForeignKey(Fournisseur, on_delete=models.CASCADE, db_column='idfourn')
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     datedebut = models.DateField( )
     datefin = models.DateField( )
     monttarif = models.FloatField( )
@@ -595,7 +565,7 @@ class Tarifsfourn(models.Model):
 
 class Tarifsgaz(models.Model):
     idtarifgaz = models.AutoField(primary_key=True)
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     datedebut = models.DateField( )
     datefin = models.DateField( )
     tarifrchg = models.IntegerField( )
@@ -604,7 +574,6 @@ class Tarifsgaz(models.Model):
     class Meta:
         managed = True
         db_table = 'tarifsgaz'
-        
 
 
 class Userstation(models.Model):
@@ -615,7 +584,6 @@ class Userstation(models.Model):
     class Meta:
         managed = True
         db_table = 'userstation'
-        
 
 
 class Vtesclientcredit(models.Model):
@@ -624,7 +592,7 @@ class Vtesclientcredit(models.Model):
     idcli = models.ForeignKey(Client, on_delete=models.CASCADE, db_column='idcli')
     idjournee = models.ForeignKey(Journeescomptable, on_delete=models.CASCADE, db_column='idjournee')
     datemvt = models.DateField( )
-    idArticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idArticle')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
     quantite = models.IntegerField( )
     prixunitaire = models.IntegerField( )
     montant = models.IntegerField( )
@@ -633,4 +601,3 @@ class Vtesclientcredit(models.Model):
     class Meta:
         managed = True
         db_table = 'vtesclientcredit'
-        

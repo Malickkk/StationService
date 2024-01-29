@@ -12,6 +12,14 @@
 <div class="row">
     {{ creerNatOp.libope|as_crispy_field }}
 </div>
+<div class="row">
+    <div class="col-md-2 mb-0">
+      {{ creerNatOp.saiqte|as_crispy_field }}
+    </div>
+    <div class="col-md-2 mb-0">
+      {{ creerNatOp.saival|as_crispy_field }}
+    </div>
+</div>
 
 {% endblock body %} 
 {% block retour %}{% url 'natOps' %}{% endblock retour %}

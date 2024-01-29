@@ -16,6 +16,6 @@
 {% block value2 %}{{val.nomArticle}}{% endblock value2 %}
 {% block value3 %}{{val.idfamille}}{% endblock value3 %}
 
-{% block infoLink %}{% url 'Articleinfo' val.pk %}{% endblock infoLink %}
-{% block editLink %}{% url 'Articleedit' val.pk %}{% endblock editLink %}
-{% block deleteLink %}{% url 'Articledelete' val.pk %}{% endblock deleteLink %}
+{% block infoLink %}{% url 'articleinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'articleedit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'articledelete' val.pk %}{% endblock deleteLink %}

@@ -17,14 +17,16 @@
                 </h3>
             </div>
             <div class="body">
+              <fieldset disabled>
                 {% block body %}{% endblock body %} 
+              </fieldset>
             </div>
             <div class="row">
-              <div class="col-md-6 mb-0">
+              <div class="col-md-12 mb-0">
                 <a class="btn btn-danger btn-block" 
                 href="{% block retour %}{% endblock retour %}" role="button">Retour</a>
               </div>
-              <div class="col-md-6 mb-0">
+              <div class="col-md-12 mb-0">
                 
               </div>
             </div>

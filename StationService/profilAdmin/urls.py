@@ -22,11 +22,11 @@ urlpatterns = [
     path('userdelete/<int:pk>', views.userDelete, name='userdelete'),
 
     # ************* Section Articles *************
-    path('Articles/', views.articles, name='articles'),
-    path('Articlecreate/', views.creerArticle, name='articlecreate'),
-    path('Articleedit/<str:pk>', views.articleEdit, name='articleedit'),
-    path('Articleinfo/<str:pk>', views.articleInfo, name='articleinfo'),
-    path('Articledelete/<int:pk>', views.articleDelete, name='articledelete'),
+    path('articles/', views.articles, name='articles'),
+    path('articlecreate/', views.creerArticle, name='articlecreate'),
+    path('articleedit/<str:pk>', views.articleEdit, name='articleedit'),
+    path('articleinfo/<str:pk>', views.articleInfo, name='articleinfo'),
+    path('articledelete/<int:pk>', views.articleDelete, name='articledelete'),
     
     # ************* Section Tarifs *************
     path('tarifs/', views.tarifs, name='tarifs'),
@@ -44,10 +44,10 @@ urlpatterns = [
 
     # ************* Section Tarif Client *************
     path('tarifClient/', views.tarifClient, name='tarifClient'),
-    path('tarifClientcreate/', views.tarifClientCreate, name='tarifclientcreate'),
-    path('tarifClientedit/<str:pk>', views.tarifClientEdit, name='tarifclientedit'),
-    path('tarifClientinfo/<str:pk>', views.tarifClientInfo, name='tarifclientinfo'),
-    path('tarifClientdelete/<int:pk>', views.tarifClientDelete, name='tarifclientdelete'),
+    path('tarifClientCreate/', views.tarifClientCreate, name='tarifclientcreate'),
+    path('tarifClientEdit/<str:pk>', views.tarifClientEdit, name='tarifclientedit'),
+    path('tarifClientInfo/<str:pk>', views.tarifClientInfo, name='tarifclientinfo'),
+    path('tarifClientDelete/<int:pk>', views.tarifClientDelete, name='tarifclientdelete'),
 
     # ************* Section Fournisseur *************
     path('fournisseur/', views.fournisseurs, name='fournisseurs'),
@@ -64,11 +64,11 @@ urlpatterns = [
     path('tarifFournisseurdelete/<int:pk>', views.tarifFournisseurDelete, name='tariffournisseurdelete'),
  
     # ************* Section Famille Articles *************
-    path('familleArticles/', views.famillearticles, name='familleArticles'),
-    path('familleArticlecreate/', views.famillearticleCreate, name='famillearticlecreate'),
-    path('familleArticleedit/<str:pk>', views.famillearticleEdit, name='famillearticleedit'),
-    path('familleArticleinfo/<str:pk>', views.famillearticleInfo, name='famillearticleinfo'),
-    path('familleArticledelete/<int:pk>', views.famillearticleDelete, name='famillearticledelete'),
+    path('familleArticles/', views.familleArticles, name='familleArticles'),
+    path('familleArticlecreate/', views.familleArticleCreate, name='familleArticlecreate'),
+    path('familleArticleedit/<str:pk>', views.familleArticleEdit, name='familleArticleedit'),
+    path('familleArticleinfo/<str:pk>', views.familleArticleInfo, name='familleArticleinfo'),
+    path('familleArticledelete/<int:pk>', views.familleArticleDelete, name='familleArticledelete'),
 
      # ************* Section Nature des Opérations *************
     path('natOps/', views.natOps, name='natOps'),
