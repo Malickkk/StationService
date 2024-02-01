@@ -1,0 +1,24 @@
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% load bootstrap_icons %}
+
+{% block table %}
+{% for val in values %}
+          <tr>
+              <th class="text-center" scope="row">{{ forloop.counter }}</th>
+              <td class="text-center" scope="row">{% block value1 %}{% endblock value1 %}</td>
+              <td class="text-center" scope="row">{% block value2 %}{% endblock value2 %}</td>
+              <td class="text-center" scope="row">{% block value3 %}{% endblock value3 %}</td>
+              <td class="text-center" scope="row">
+                  <a type=button class="btn btn-secondary" 
+                  href="{% block infoLink %}{% endblock infoLink %}"
+                  data-toggle="tooltip-info" title="Info">{% bs_icon 'info-circle' %}</a>
+                  <a type=button class="btn btn-secondary" 
+                  href="{% block editLink %}{% endblock editLink %}"
+                  data-toggle="tooltip-edit" title="Modifier">{% bs_icon 'gear' %}</a>
+                  <a type=button class="btn btn-danger" 
+                  href="{% block deleteLink %}{% endblock deleteLink %}"
+                  data-toggle="tooltip-delete" title="Supprimer">{% bs_icon 'trash' %}</a>
+              </td>
+          </tr>
+{% endfor %}
+{% endblock table %}

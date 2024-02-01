@@ -7,42 +7,26 @@
         {% block indexTitle %}{% endblock indexTitle %}
     </h3>
 
-    <div class="row">
-        <div class="col-md-6 mb-0">
-            <a class="btn btn-primary" type="button" name="button"
-            data-toggle="tooltip-create" title="Créer">
-            {% bs_icon 'plus-circle' %}
-        </a>
-        </div>
-        <div class="col-md-6 mb-0">
-            <input type="text" id="myInput" onkeyup="myFunction()" 
-        placeholder="Recherche..." title="Entrer votre recherche">
-        </div>
-    </div>
     <!-- Trigger the modal with a button -->
-<a type="button" class="btn btn-info btn-lg" data-toggle="modal" 
-data-target="#myModal" href="{% block pageLink %}{% endblock pageLink %}">
-{% bs_icon 'plus-circle' %}</a>
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+<button hx-get="{% block pageLink %}{% endblock pageLink %}" hx-target="#dialog" class="btn btn-primary">
+  {% bs_icon 'plus-circle' %}
+</button>
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">
-          {% block modalHeader %}{% endblock modalHeader %}</h4>
-      </div>
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <div class="modal-body">
-        {% block modalBody %}{% endblock modalBody %}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+<!-- Placeholder for the modal -->
+<div id="modal" class="modal fade">
+  <div id="dialog" class="modal-dialog" hx-target="this"></div>
+</div>
+
+<!-- Empty toast to show the message -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div id="toast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive"
+    aria-atomic="true">
+    <div class="d-flex">
+      <div id="toast-body" class="toast-body"></div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+        aria-label="Close"></button>
     </div>
-
   </div>
 </div>
     
@@ -56,27 +40,8 @@ data-target="#myModal" href="{% block pageLink %}{% endblock pageLink %}">
             <th class="text-center" scope="col">Actions</th>
         </thead>
 
-        <tbody>
-            {% for val in values %}
-            
-            <tr>
-                <th class="text-center" scope="row">{{ forloop.counter }}</th>
-                <td class="text-center" scope="row">{% block value1 %}{% endblock value1 %}</td>
-                <td class="text-center" scope="row">{% block value2 %}{% endblock value2 %}</td>
-                <td class="text-center" scope="row">{% block value3 %}{% endblock value3 %}</td>
-                <td class="text-center" scope="row">
-                    <a type=button class="btn btn-secondary" 
-                    href="{% block infoLink %}{% endblock infoLink %}"
-                    data-toggle="tooltip-info" title="Info">{% bs_icon 'info-circle' %}</a>
-                    <a type=button class="btn btn-secondary" 
-                    href="{% block editLink %}{% endblock editLink %}"
-                    data-toggle="tooltip-edit" title="Modifier">{% bs_icon 'gear' %}</a>
-                    <a type=button class="btn btn-danger" 
-                    href="{% block deleteLink %}{% endblock deleteLink %}"
-                    data-toggle="tooltip-delete" title="Supprimer">{% bs_icon 'trash' %}</a>
-                </td>
-            </tr>
-            {% endfor %}
+        <tbody hx-trigger="load, valueChanged from:body" hx-get="{% block localPage %}{% endblock localPage %}" hx-target="this">
+          {% block table %}{% endblock table %}
         </tbody>
     </table>
 </div>
@@ -103,4 +68,45 @@ function myFunction() {
   }
 }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/htmx.org@1.6.1/dist/htmx.min.js"></script>
+
+  <script>
+    ; (function () {
+      const modal = new bootstrap.Modal(document.getElementById("modal"))
+
+      htmx.on("htmx:afterSwap", (e) => {
+        // Response targeting #dialog => show the modal
+        if (e.detail.target.id == "dialog") {
+          modal.show()
+        }
+      })
+
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "dialog" && !e.detail.xhr.response) {
+          modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("dialog").innerHTML = ""
+      })
+    })()
+  </script>
+  <script>
+      ; (function () {
+        const toastElement = document.getElementById("toast")
+        const toastBody = document.getElementById("toast-body")
+        const toast = new bootstrap.Toast(toastElement, { delay: 2000 })
+
+        htmx.on("showMessage", (e) => {
+          toastBody.innerText = e.detail.value
+          toast.show()
+        })
+      })()
+  </script>
 {% endblock extrascripts %}

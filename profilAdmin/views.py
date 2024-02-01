@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 from .models import *
 from .forms import *
@@ -65,15 +66,12 @@ def stationDelete(request, pk):
 
 def users(request):
     utilisateurs = Utilisateur.objects.all()
-    if request.method == 'POST':
-        creerUserForm = utilisateurForm(request.POST or None)
-        if creerUserForm.is_valid():
-            creerUserForm.save()
-            return redirect('users')
-    else:
-        creerUserForm = utilisateurForm()
-    context={'values' : utilisateurs, 'creerUserForm' : creerUserForm}
+    context={'values' : utilisateurs}
     return render(request, folderLocation+'index/users.html', context)
+
+@csrf_exempt
+def table(request):
+    return render(request, 'interfaces/administ/table.html')
 
 @csrf_exempt
 def userCreate(request):
@@ -81,7 +79,14 @@ def userCreate(request):
         creerUserForm = utilisateurForm(request.POST or None)
         if creerUserForm.is_valid():
             creerUserForm.save()
-            return redirect('users')
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "HX-Trigger" : "valueChanged",
+                        "showMessage": f"Utilisateur ajouté."
+                    })
+                })   
     else:
         creerUserForm = utilisateurForm()
     context={'creerUserForm' : creerUserForm}

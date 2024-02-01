@@ -6,6 +6,8 @@ urlpatterns = [
 
     path('', views.indexAdmin, name='indexAdmin'),
     path('indexAdmin/', views.indexAdmin, name='indexAdmin'),
+    path('table/', views.table, name='table'),
+
 
     # ************* Section StationServices *************
     path('stationServices/', views.stationServices, name='stationServices'),
