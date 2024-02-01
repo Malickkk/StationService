@@ -1,0 +1,35 @@
+{% extends "interfaces/administ/baseAdmin.html" %}
+
+{% load crispy_forms_tags %}
+{% block title %}{% endblock title%}
+
+{% block content %} 
+<div class="container">
+  <form method="post">
+    <div tabindex="-1" role="dialog" aria-labelledby="addLabel" aria-hidden="true"
+      id="add">
+      <div class="dialog" role="document">
+          <div class="content">
+            <div class="header">
+                <!-- Title -->
+                <h3 class="text-center" id="{% block idTitle %}{% endblock idTitle %}">
+                    {% block formTitle %}{% endblock formTitle %} 
+                </h3>
+            </div>
+            <div class="body">
+                {% block body %}{% endblock body %} 
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-0">
+                <a class="btn btn-danger btn-block" href="{% block retour %}{% endblock retour %}" role="button">Retour</a>
+              </div>
+              <div class="col-md-6 mb-0">
+                <button type="submit" class="btn btn-primary btn-block">Valider</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div> 
+  </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Tarifs{% endblock %}
+
+{% block pageLink %}{% url 'tarifcreate'  %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des tarifs{% endblock indexTitle %}
+
+{% block tableTitle %}Mes Tarifs{% endblock tableTitle %}
+
+{% block col1 %}Article{% endblock col1 %}
+{% block col2 %}Montant{% endblock col2 %}
+{% block col3 %}Periode de validité{% endblock col3 %}
+
+{% block value1 %}{{val.idarticle}}{% endblock value1 %}
+{% block value2 %}{{val.monttarif}}{% endblock value2 %}
+{% block value3 %}{{val.datedebut}} - {{val.datefin}}{% endblock value3 %}
+
+{% block infoLink %}{% url 'tarifinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'tarifedit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'tarifdelete' val.pk %}{% endblock deleteLink %}

@@ -1,0 +1,29 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Création Tarif Fournisseurs{% endblock title %} 
+
+{% block idTitle %}modifierTarifFournisseurID{% endblock idTitle %}
+{% block formTitle %}Création Tarif Fournisseurs{% endblock formTitle %} 
+{% block body %}
+<div class="row">
+  <div class="col-md-4 mb-0">
+    {{ modifierTarifFournisseur.idfourn|as_crispy_field }}
+  </div>
+  <div class="col-md-4 mb-0">
+    {{ modifierTarifFournisseur.idarticle|as_crispy_field }}
+  </div>
+  <div class="col-md-4 mb-0">
+    {{ modifierTarifFournisseur.monttarif|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-0">
+    {{ modifierTarifFournisseur.datedebut|as_crispy_field }}
+    </div>
+    <div class="col-md-6 mb-0">
+    {{ modifierTarifFournisseur.datefin|as_crispy_field }}
+    </div>
+</div>
+{% endblock body %} 
+{% block retour %}{% url 'tarifFournisseur' %}{% endblock retour %}

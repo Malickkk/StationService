@@ -1,0 +1,16 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Paramètres de base - Supprimer opération{% endblock title %} 
+
+{% block idTitle %}deleteNatOpID{% endblock idTitle %}
+{% block formTitle %}Suppression d'opération{% endblock formTitle %} 
+{% block body %}
+<div>
+    <form method="post">
+        Supprimer {{natOp}}? 
+    </form>
+   
+</div>
+{% endblock body %} 
+{% block retour %}{% url 'natOps' %}{% endblock retour %}

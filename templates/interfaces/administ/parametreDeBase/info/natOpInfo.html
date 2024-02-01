@@ -1,0 +1,24 @@
+{% extends "interfaces/administ/infoTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Paramètres de base - Information operation{% endblock title %} 
+
+{% block idTitle %}infoNatOpID{% endblock idTitle %}
+{% block formTitle %}Information sur operation{% endblock formTitle %} 
+{% block body %}
+<div class="row">
+    {{ infoNatOp.codope|as_crispy_field }}
+</div>
+<div class="row">
+    {{ infoNatOp.libope|as_crispy_field }}
+</div>
+<div class="row">
+    <div class="col-md-6 mb-0">
+        {{ infoNatOp.saiqte|as_crispy_field }}
+    </div>
+    <div class="col-md-6 mb-0">
+        {{ infoNatOp.saival|as_crispy_field }}
+    </div>
+</div>
+{% endblock body %} 
+{% block retour %}{% url 'natOps' %}{% endblock retour %}

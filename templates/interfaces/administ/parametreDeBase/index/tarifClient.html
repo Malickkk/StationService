@@ -1,0 +1,20 @@
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Tarifs clients{% endblock %}
+
+{% block pageLink %}{% url 'tarifclientcreate'  %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des tarifs pour clients{% endblock indexTitle %}
+
+{% block tableTitle %}Mes Tarifs Clients{% endblock tableTitle %}
+
+{% block col1 %}Clients{% endblock col1 %}
+{% block col2 %}Article{% endblock col2 %}
+{% block col3 %}Periode de validité{% endblock col3 %}
+
+{% block value1 %}{{val.clients}}{% endblock value1 %}
+{% block value2 %}{{val.idarticle}}{% endblock value2 %}
+{% block value3 %}{{val.datedebut}} - {{val.datefin}}{% endblock value3 %}
+
+{% block infoLink %}{% url 'tarifclientinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'tarifclientedit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'tarifclientdelete' val.pk %}{% endblock deleteLink %}

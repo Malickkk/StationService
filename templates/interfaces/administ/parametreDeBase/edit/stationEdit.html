@@ -1,0 +1,56 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Modification{% endblock title %}
+
+{% block idTitle %}editStationID{% endblock idTitle %}
+{% block formTitle %}Modification d'info pour station service{% endblock formTitle %} 
+{% block body %}
+<div class="row">
+    <div class="col-md-6 mb-0">
+      {{ modifierStation.iduser|as_crispy_field }}
+    </div>
+    <div class="col-md-6 mb-0">
+      {{ modifierStation.codstation|as_crispy_field }}
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4 mb-0">
+        {{ modifierStation.pays|as_crispy_field }}
+      </div>
+      <div class="col-md-4 mb-0">
+        {{ modifierStation.ville|as_crispy_field }}
+      </div>
+      <div class="col-md-4 mb-0">
+          {{ modifierStation.adrgeo|as_crispy_field }}
+        </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6 mb-0">
+        {{ modifierStation.telresp1|as_crispy_field }}
+      </div>
+      <div class="col-md-6 mb-0">
+        {{ modifierStation.telresp2|as_crispy_field }}
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4 mb-0">
+        {{ modifierStation.nbdecuve|as_crispy_field }}
+      </div>
+      <div class="col-md-4 mb-0">
+        {{ modifierStation.nbdepompe|as_crispy_field }}
+      </div>
+      <div class="col-md-4 mb-0">
+          {{ modifierStation.capcuve|as_crispy_field }}
+        </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6 mb-0">
+        {{ modifierStation.jourcpta|as_crispy_field }}
+      </div>
+      <div class="col-md-6 mb-0">
+        {{ modifierStation.exocpta|as_crispy_field }}
+      </div>
+  </div>
+{% endblock body %} 
+{% block retour %}{% url 'stationServices' %}{% endblock retour %}

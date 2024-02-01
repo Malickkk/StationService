@@ -1,0 +1,21 @@
+
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Fournisseur{% endblock %}
+
+{% block pageLink %}{% url 'fournisseurcreate'  %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des fournisseurs{% endblock indexTitle %}
+
+{% block tableTitle %}Mes Fournisseur{% endblock tableTitle %}
+
+{% block col1 %}Raison Sociale{% endblock col1 %}
+{% block col2 %}Ville{% endblock col2 %}
+{% block col3 %}No Telephone{% endblock col3 %}
+
+{% block value1 %}{{val.raisonsoc}}{% endblock value1 %}
+{% block value2 %}{{val.ville}}{% endblock value2 %}
+{% block value3 %}{{val.telresp1}}{% endblock value3 %}
+
+{% block infoLink %}{% url 'fournisseurinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'fournisseuredit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'fournisseurdelete' val.pk %}{% endblock deleteLink %}

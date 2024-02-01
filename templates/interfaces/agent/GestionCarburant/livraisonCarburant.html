@@ -1,0 +1,39 @@
+{% extends "../baseAgent.html" %}
+{% block title %}Gestion des carburants - Livraisons{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <table class="table table-hover">
+        <caption>Gestion des livraisons de carburant</caption>
+        <thead>
+            <th scope="col">Date comptable</th>
+            <th scope="col">No livraison</th>
+            <th scope="col">Fournisseur</th>
+            <th scope="col">Article</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix unitaire</th>
+            <th scope="col">Montant</th>
+            <th scope="col">Details</th>
+            <th scope="col"></th>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>{{ gestionCarburant.idjournee }}</td>
+                <td>{{ gestionCarburant.numbl }}</td>
+                <td>{{ gestionCarburant.idfourn }}</td>
+                <td>{{ gestionCarburant.idarticle }}</td>
+                <td>{{ gestionCarburant.qtelivree }}</td>
+                <td>{{ gestionCarburant.prixachat }}</td>
+                <td>{{ gestionCarburant.monlivre }}</td>
+                <td>{{ gestionCarburant.comment }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a type=button class="btn btn-primary" href="{% url 'creerLivraison' %}">
+        Créer une livraison</a>
+</div>
+
+{% endblock %}

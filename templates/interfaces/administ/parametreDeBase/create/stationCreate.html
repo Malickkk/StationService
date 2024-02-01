@@ -1,0 +1,56 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Paramètres de base - Créer une nouvelle station service{% endblock title %} 
+
+{% block idTitle %}creerStationID{% endblock idTitle %}
+{% block formTitle %}Création de station service{% endblock formTitle %} 
+{% block body %}
+<div class="row">
+  <div class="col-md-6 mb-0">
+    {{ creerStationForm.iduser|as_crispy_field }}
+  </div>
+  <div class="col-md-6 mb-0">
+    {{ creerStationForm.codstation|as_crispy_field }}
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-4 mb-0">
+      {{ creerStationForm.pays|as_crispy_field }}
+    </div>
+    <div class="col-md-4 mb-0">
+      {{ creerStationForm.ville|as_crispy_field }}
+    </div>
+    <div class="col-md-4 mb-0">
+        {{ creerStationForm.adrgeo|as_crispy_field }}
+      </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-0">
+      {{ creerStationForm.telresp1|as_crispy_field }}
+    </div>
+    <div class="col-md-6 mb-0">
+      {{ creerStationForm.telresp2|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 mb-0">
+      {{ creerStationForm.nbdecuve|as_crispy_field }}
+    </div>
+    <div class="col-md-4 mb-0">
+      {{ creerStationForm.nbdepompe|as_crispy_field }}
+    </div>
+    <div class="col-md-4 mb-0">
+        {{ creerStationForm.capcuve|as_crispy_field }}
+      </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-0">
+      {{ creerStationForm.jourcpta|as_crispy_field }}
+    </div>
+    <div class="col-md-6 mb-0">
+      {{ creerStationForm.exocpta|as_crispy_field }}
+    </div>
+</div>
+{% endblock body %} 
+{% block retour %}{% url 'stationServices' %}{% endblock retour %}

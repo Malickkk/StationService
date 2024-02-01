@@ -1,0 +1,26 @@
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block modalBody %}
+<div class="row">
+  <div class="col-md-6 mb-0">
+    {{ creerUserForm.nom|as_crispy_field }}
+  </div>
+  <div class="col-md-6 mb-0">
+    {{ creerUserForm.prenom|as_crispy_field }}
+  </div>
+</div>
+<div class="row">
+    {{ creerUserForm.email|as_crispy_field }}
+</div>
+<div class="row">
+    <div class="col-md-6 mb-0">
+      {{ creerUserForm.dob|as_crispy_field }}
+    </div>
+    <div class="col-md-6 mb-0">
+      {{ creerUserForm.profiluser|as_crispy_field }}
+    </div>
+</div>
+{% endblock modalBody %} 
+{% block retour %}{% url 'users' %}{% endblock retour %}
