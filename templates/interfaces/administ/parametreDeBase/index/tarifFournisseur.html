@@ -1,0 +1,20 @@
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Tarifs fournisseurs {% endblock %}
+
+{% block pageLink %}{% url 'tariffournisseurcreate'  %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des tarifs pour fournisseurs{% endblock indexTitle %}
+
+{% block tableTitle %}Mes Tarifs Fournisseurs{% endblock tableTitle %}
+
+{% block col1 %}Fournisseurs{% endblock col1 %}
+{% block col2 %}Libellé de l'Article{% endblock col2 %}
+{% block col3 %}Periode de validité{% endblock col3 %}
+
+{% block value1 %}{{val.idfourn}}{% endblock value1 %}
+{% block value2 %}{{val.idarticle}}{% endblock value2 %}
+{% block value3 %}{{val.datedebut}} - {{val.datefin}}{% endblock value3 %}
+
+{% block infoLink %}{% url 'tariffournisseurinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'tariffournisseuredit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'tariffournisseurdelete' val.pk %}{% endblock deleteLink %}

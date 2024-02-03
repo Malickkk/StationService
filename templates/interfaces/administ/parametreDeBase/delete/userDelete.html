@@ -1,0 +1,16 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Suppression{% endblock title %} 
+
+{% block idTitle %}deleteUserID{% endblock idTitle %}
+{% block formTitle %}Suppression{% endblock formTitle %} 
+{% block body %}
+<div>
+    <form method="post">
+        Supprimer {{user}}? 
+    </form>
+   
+</div>
+{% endblock body %} 
+{% block retour %}{% url 'users' %}{% endblock retour %}

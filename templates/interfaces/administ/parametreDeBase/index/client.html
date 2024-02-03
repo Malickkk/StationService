@@ -1,0 +1,21 @@
+
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Client{% endblock %}
+
+{% block pageLink %}{% url 'clientcreate'  %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des clients{% endblock indexTitle %}
+
+{% block tableTitle %}Mes Clients{% endblock tableTitle %}
+
+{% block col1 %}Raison Sociale{% endblock col1 %}
+{% block col2 %}Ville{% endblock col2 %}
+{% block col3 %}No Telephone{% endblock col3 %}
+
+{% block value1 %}{{val.raisonsoc}}{% endblock value1 %}
+{% block value2 %}{{val.ville}}{% endblock value2 %}
+{% block value3 %}{{val.telresp1}}{% endblock value3 %}
+
+{% block infoLink %}{% url 'clientinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'clientedit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'clientdelete' val.pk %}{% endblock deleteLink %}

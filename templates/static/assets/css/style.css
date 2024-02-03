@@ -1,0 +1,8 @@
+table {
+    width: 500px;
+  }
+  
+  .scroll {
+    max-height: 60px;
+    overflow: auto;
+  }

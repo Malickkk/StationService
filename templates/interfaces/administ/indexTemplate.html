@@ -1,7 +1,6 @@
 {% extends "interfaces/administ/baseAdmin.html" %}
 {% load bootstrap_icons %}
 {% block content %}
-      
 <div class="container">
     <h3 class="text-center" id="{% block idTitle %}{% endblock idTitle %}">
         {% block indexTitle %}{% endblock indexTitle %}
@@ -10,6 +9,7 @@
     <div class="row">
         <div class="col-md-6 mb-0">
             <a class="btn btn-primary" type="button" name="button"
+            href="{% block pageLink %}{% endblock pageLink %}"
             data-toggle="tooltip-create" title="Créer">
             {% bs_icon 'plus-circle' %}
         </a>
@@ -19,58 +19,33 @@
         placeholder="Recherche..." title="Entrer votre recherche">
         </div>
     </div>
-    <!-- Trigger the modal with a button -->
-<a type="button" class="btn btn-info btn-lg" data-toggle="modal" 
-data-target="#myModal" href="{% block pageLink %}{% endblock pageLink %}">
-{% bs_icon 'plus-circle' %}</a>
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">
-          {% block modalHeader %}{% endblock modalHeader %}</h4>
-      </div>
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <div class="modal-body">
-        {% block modalBody %}{% endblock modalBody %}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-    
-    <table id="myTable" class="table table-hover">
+  <div class="tableFixHead"></div>
+    <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" 
+    cellspacing="0" width="100%">
         <caption>{% block tableTitle %}{% endblock tableTitle %}</caption>
         <thead>
-            <th class="text-center" scope="col">#</th>
-            <th class="text-center" scope="col">{% block col1 %}{% endblock col1 %}</th>
-            <th class="text-center" scope="col">{% block col2 %}{% endblock col2 %}</th>
-            <th class="text-center" scope="col">{% block col3 %}{% endblock col3 %}</th>
-            <th class="text-center" scope="col">Actions</th>
+            <th scope="col" width="4%">#</th>
+            <th scope="col" width="27%">{% block col1 %}{% endblock col1 %}</th>
+            <th scope="col" width="27%">{% block col2 %}{% endblock col2 %}</th>
+            <th scope="col" width="27%">{% block col3 %}{% endblock col3 %}</th>
+            <th scope="col" width="15%">Actions</th>
         </thead>
 
         <tbody>
             {% for val in values %}
             
             <tr>
-                <th class="text-center" scope="row">{{ forloop.counter }}</th>
-                <td class="text-center" scope="row">{% block value1 %}{% endblock value1 %}</td>
-                <td class="text-center" scope="row">{% block value2 %}{% endblock value2 %}</td>
-                <td class="text-center" scope="row">{% block value3 %}{% endblock value3 %}</td>
-                <td class="text-center" scope="row">
+                <th scope="row">{{ forloop.counter }}</th>
+                <td scope="row">{% block value1 %}{% endblock value1 %}</td>
+                <td scope="row">{% block value2 %}{% endblock value2 %}</td>
+                <td scope="row">{% block value3 %}{% endblock value3 %}</td>
+                <td scope="row">
                     <a type=button class="btn btn-secondary" 
                     href="{% block infoLink %}{% endblock infoLink %}"
                     data-toggle="tooltip-info" title="Info">{% bs_icon 'info-circle' %}</a>
                     <a type=button class="btn btn-secondary" 
                     href="{% block editLink %}{% endblock editLink %}"
-                    data-toggle="tooltip-edit" title="Modifier">{% bs_icon 'gear' %}</a>
+                    data-toggle="tooltip-edit" title="Modifier">{% bs_icon 'pencil' %}</a>
                     <a type=button class="btn btn-danger" 
                     href="{% block deleteLink %}{% endblock deleteLink %}"
                     data-toggle="tooltip-delete" title="Supprimer">{% bs_icon 'trash' %}</a>
@@ -79,6 +54,7 @@ data-target="#myModal" href="{% block pageLink %}{% endblock pageLink %}">
             {% endfor %}
         </tbody>
     </table>
+    </div>
 </div>
 {% endblock content %}
   

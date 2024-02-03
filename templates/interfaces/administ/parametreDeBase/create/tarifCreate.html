@@ -1,0 +1,24 @@
+{% extends "interfaces/administ/formTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Création{% endblock title %} 
+
+{% block idTitle %}creerTarifID{% endblock idTitle %}
+{% block formTitle %}Création de tarif{% endblock formTitle %} 
+{% block body %}
+<div class="row">
+    {{ creerTarifForm.idarticle|as_crispy_field }}
+</div>
+<div class="row">
+    {{ creerTarifForm.monttarif|as_crispy_field }}
+</div>
+<div class="row">
+  <div class="col-md-6 mb-0">
+    {{ creerTarifForm.datedebut|as_crispy_field }}
+  </div>
+  <div class="col-md-6 mb-0">
+    {{ creerTarifForm.datefin|as_crispy_field }}
+  </div>
+</div>
+{% endblock body %} 
+{% block retour %}{% url 'tarifs' %}{% endblock retour %}

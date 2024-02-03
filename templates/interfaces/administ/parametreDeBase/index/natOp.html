@@ -1,0 +1,25 @@
+
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Nature des Opérations{% endblock %}
+
+{% block pageLink %}{% url 'natOpcreate'  %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des opérations{% endblock indexTitle %}
+
+{% block tableTitle %}Mes Opérations{% endblock tableTitle %}
+
+{% block col1 %}Code nature opération{% endblock col1 %}
+{% block col2 %}Libellé opération{% endblock col2 %}
+{% block col3 %}Saisie quantité et valeur{% endblock col3 %}
+
+{% block value1 %}{{val.codope}}{% endblock value1 %}
+{% block value2 %}{{val.libope}}{% endblock value2 %}
+{% block value3 %}Quantité :
+{% if val.saiqte %} Oui {% else %} Non{% endif %}
+- Valeur :
+{% if val.saival %} Oui {% else %} Non{% endif %}
+{% endblock value3 %}
+
+{% block infoLink %}{% url 'natOpinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'natOpedit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'natOpdelete' val.pk %}{% endblock deleteLink %}

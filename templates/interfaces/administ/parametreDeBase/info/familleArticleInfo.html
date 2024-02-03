@@ -1,0 +1,11 @@
+{% extends "interfaces/administ/infoTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Paramètres de base - Info sur famille Article{% endblock title %} 
+
+{% block idTitle %}infofamilleArticleID{% endblock idTitle %}
+{% block formTitle %}Information de famille d'Articles{% endblock formTitle %} 
+{% block body %}
+    {{ infofamilleArticle|crispy }}
+{% endblock body %} 
+{% block retour %}{% url 'familleArticles' %}{% endblock retour %}
