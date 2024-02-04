@@ -1,11 +1,10 @@
-{% extends "interfaces/administ/formTemplate.html" %}
 {% load crispy_forms_tags %}
-
-{% block title %}Modification{% endblock title %}
-
-{% block idTitle %}editUserID{% endblock idTitle %}
-{% block formTitle %}Modification{% endblock formTitle %} 
-{% block body %}
+<form hx-post="{{ request.path }}" class="modal-content" hx-trigger="submit, load" >
+  <div class="modal-header">
+    <h5 class="modal-title">Modification d'un utilisateur</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+<div class="modal-body">
 <div class="row">
   <div class="col-md-6 mb-0">
     {{ modifierUser.nom|as_crispy_field }}
@@ -25,5 +24,11 @@
       {{ modifierUser.profiluser|as_crispy_field }}
     </div>
 </div>
-{% endblock body %} 
-{% block retour %}{% url 'users' %}{% endblock retour %}
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+    Annuler
+  </button>
+  <button type="submit" class="btn btn-primary">Modifier</button>
+</div>
+</form>

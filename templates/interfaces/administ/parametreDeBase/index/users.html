@@ -1,13 +1,13 @@
-{% extends "interfaces/administ/table.html" %}
+{% extends "interfaces/administ/indexTemplate.html" %}
 {% block title %}Paramètres de base - Utilisateurs{% endblock %}
 
-{% block pageLink %}{% url 'usercreate'  %}{% endblock pageLink %}
+{% block pageLink %}{% url 'usercreate' %}{% endblock pageLink %}
 
 {% block indexTitle %}Gestion des utilisateurs{% endblock indexTitle %}
 
 {% block tableTitle %}Mes Utilisateurs{% endblock tableTitle %}
 
-{% block localPage %}{% url 'table'  %}{% endblock localPage %}
+{% block modalLink %}{% url 'users' %}{% endblock modalLink %}
 
 {% block col1 %}Nom & Prénom{% endblock col1 %}
 {% block col2 %}E-mail{% endblock col2 %}

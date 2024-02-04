@@ -1,7 +1,5 @@
-{% extends "interfaces/administ/indexTemplate.html" %}
 {% load bootstrap_icons %}
 
-{% block table %}
 {% for val in values %}
           <tr>
               <th class="text-center" scope="row">{{ forloop.counter }}</th>
@@ -21,4 +19,3 @@
               </td>
           </tr>
 {% endfor %}
-{% endblock table %}

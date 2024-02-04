@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 import json
 
 from .models import *
@@ -15,6 +17,13 @@ folderLocation = 'interfaces/administ/parametreDeBase/'
 def indexAdmin(request):
     context={}
     return render(request, 'interfaces/administ/indexAdmin.html', context)
+
+# REDIRECT TO A NEW LOCATION
+class HTTPResponseHXRedirect(HttpResponseRedirect):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self['HX-Redirect']=self['Location']
+    status_code = 200
 
 # ************* Section Station Services *************
 
@@ -79,14 +88,7 @@ def userCreate(request):
         creerUserForm = utilisateurForm(request.POST or None)
         if creerUserForm.is_valid():
             creerUserForm.save()
-            return HttpResponse(
-                status=204,
-                headers={
-                    'HX-Trigger': json.dumps({
-                        "HX-Trigger" : "valueChanged",
-                        "showMessage": f"Utilisateur ajouté."
-                    })
-                })   
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("users"))
     else:
         creerUserForm = utilisateurForm()
     context={'creerUserForm' : creerUserForm}
@@ -96,16 +98,17 @@ def userCreate(request):
 def userEdit(request, pk):
     user = get_object_or_404(Utilisateur, iduser=pk)
     modifierUser = utilisateurForm(request.POST or None, instance=user)
-    if modifierUser.is_valid():
-        modifierUser.save()
-        return redirect('users')
+    if request.method == "POST":
+        if modifierUser.is_valid():
+            modifierUser.save()
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("users"))
     context = {'modifierUser': modifierUser}
     return render(request, folderLocation+'edit/userEdit.html', context)
 
 @csrf_exempt
 def userInfo(request, pk):
     user = get_object_or_404(Utilisateur, iduser=pk)
-    infoUser = utilisateurForm(request.POST or None, instance=user)
+    infoUser = utilisateurForm(instance=user)
     context = {'infoUser': infoUser}
     return render(request, folderLocation+'info/userInfo.html', context)
 
@@ -114,7 +117,7 @@ def userDelete(request, pk):
     user = get_object_or_404(Utilisateur, iduser=pk)
     if request.method == 'POST':
         user.delete()
-        return redirect('users')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("users"))
     context = {'user': user}
     return render(request, folderLocation+'delete/userDelete.html', context)
 

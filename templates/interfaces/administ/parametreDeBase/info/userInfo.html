@@ -1,10 +1,11 @@
-{% extends "interfaces/administ/infoTemplate.html" %}
-
 {% load crispy_forms_tags %}
-{% block title %}User Info{% endblock title%}
-{% block formTitle %}Information d'utilisateur{% endblock formTitle %} 
-
-{% block body %} 
+<form hx-post="{{ request.path }}" class="modal-content" hx-trigger="submit, load" >
+  <div class="modal-header">
+    <h5 class="modal-title">Info d'utilisateur</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+<div class="modal-body">
+<fieldset disabled>
 <div class="row">
    <div class="col-md-6 mb-0">
      {{ infoUser.nom|as_crispy_field }}
@@ -24,5 +25,11 @@
        {{ infoUser.profiluser|as_crispy_field }}
      </div>
  </div>
-{% endblock body %}
-{% block retour %}{% url 'users' %}{% endblock retour %}
+</fieldset>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+    Retour
+  </button>
+</div>
+</form>
