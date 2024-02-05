@@ -1,16 +1,2 @@
-{% extends "interfaces/administ/formTemplate.html" %}
-{% load crispy_forms_tags %}
-
-{% block title %}Paramètres de base - Supprimer client{% endblock title %} 
-
-{% block idTitle %}deleteClientID{% endblock idTitle %}
-{% block formTitle %}Suppression de client{% endblock formTitle %} 
-{% block body %}
-<div>
-    <form method="post">
-        Supprimer {{client}}? 
-    </form>
-   
-</div>
-{% endblock body %} 
-{% block retour %}{% url 'clients' %}{% endblock retour %}
+{% extends "interfaces/administ/modalDelete.html" %}
+{% block element %}{{client}}{% endblock element %}

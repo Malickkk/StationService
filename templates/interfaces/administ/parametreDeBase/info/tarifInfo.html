@@ -1,23 +1,21 @@
-{% extends "interfaces/administ/infoTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Modification{% endblock title %}
-{% block idTitle %}editTarifID{% endblock idTitle %}
-{% block formTitle %}Information de tarif{% endblock formTitle %} 
-{% block body %}
+{% block modalTitle %}Informations{% endblock modalTitle %}
+{% block modalBody %}
+<fieldset disabled>
 <div class="row">
-    {{ infoTarif.idarticle|as_crispy_field }}
+  {{ infoTarif.idarticle|as_crispy_field }}
 </div>
 <div class="row">
-    {{ infoTarif.monttarif|as_crispy_field }}
+  {{ infoTarif.monttarif|as_crispy_field }}
 </div>
 <div class="row">
-  <div class="col-md-6 mb-0">
-    {{ infoTarif.datedebut|as_crispy_field }}
-  </div>
-  <div class="col-md-6 mb-0">
-    {{ infoTarif.datefin|as_crispy_field }}
-  </div>
+<div class="col-md-6 mb-0">
+  {{ infoTarif.datedebut|as_crispy_field }}
 </div>
-{% endblock body %} 
-{% block retour %}{% url 'tarifs' %}{% endblock retour %}
+<div class="col-md-6 mb-0">
+  {{ infoTarif.datefin|as_crispy_field }}
+</div>
+</fieldset>
+{% endblock modalBody %}

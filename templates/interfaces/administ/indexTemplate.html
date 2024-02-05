@@ -40,17 +40,17 @@
                 <td scope="row">
                     <button class="btn btn-secondary"
                     hx-get="{% block infoLink %}{% endblock infoLink %}"
-                    hx-target="#dialog"data-toggle="tooltip-info" title="Info">
+                    hx-target="#dialog" title="Info">
                     {% bs_icon 'info-circle' %}
                     </button>
                     <button class="btn btn-secondary"
                     hx-get="{% block editLink %}{% endblock editLink %}"
-                    hx-target="#dialog" data-toggle="tooltip-edit" title="Modifier">
+                    hx-target="#dialog" title="Modifier">
                     {% bs_icon 'pencil' %}
                     </button>
                     <button class="btn btn-danger"
                     hx-get="{% block deleteLink %}{% endblock deleteLink %}"
-                    hx-target="#dialog" data-toggle="tooltip-delele"title="Supprimer">
+                    hx-target="#dialog" title="Supprimer">
                     {% bs_icon 'trash' %}
                     </button>
                 </td>

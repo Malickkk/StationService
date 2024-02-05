@@ -1,11 +1,10 @@
-{% extends "interfaces/administ/infoTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Information{% endblock title %}
-{% block idTitle %}infoTarifClientID{% endblock idTitle %}
-{% block formTitle %}Information de tarif de client{% endblock formTitle %} 
-{% block body %}
-<div class="row">
+{% block modalTitle %}Informations{% endblock modalTitle %}
+{% block modalBody %}
+<fieldset disabled>
+  <div class="row">
     <div class="col-md-4 mb-0">
       {{ infoTarifClient.clients|as_crispy_field }}
     </div>
@@ -24,5 +23,5 @@
         {{ infoTarifClient.datefin|as_crispy_field }}
       </div>
   </div>
-{% endblock body %} 
-{% block retour %}{% url 'tarifClient' %}{% endblock retour %}
+  </fieldset>
+{% endblock modalBody %}

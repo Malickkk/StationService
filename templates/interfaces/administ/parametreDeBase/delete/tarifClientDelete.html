@@ -1,16 +1,2 @@
-{% extends "interfaces/administ/formTemplate.html" %}
-{% load crispy_forms_tags %}
-
-{% block title %}Suppression{% endblock title %} 
-
-{% block idTitle %}deleteTarifClientID{% endblock idTitle %}
-{% block formTitle %}Suppression{% endblock formTitle %} 
-{% block body %}
-<div>
-    <form method="post">
-        Supprimer {{tarifClient}}? 
-    </form>
-   
-</div>
-{% endblock body %} 
-{% block retour %}{% url 'tarifClient' %}{% endblock retour %}
+{% extends "interfaces/administ/modalDelete.html" %}
+{% block element %}{{tarifClient}}{% endblock element %}

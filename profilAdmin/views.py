@@ -79,10 +79,6 @@ def users(request):
     return render(request, folderLocation+'index/users.html', context)
 
 @csrf_exempt
-def table(request):
-    return render(request, 'interfaces/administ/table.html')
-
-@csrf_exempt
 def userCreate(request):
     if request.method == 'POST':
         creerUserForm = utilisateurForm(request.POST or None)
@@ -97,12 +93,16 @@ def userCreate(request):
 @csrf_exempt
 def userEdit(request, pk):
     user = get_object_or_404(Utilisateur, iduser=pk)
-    modifierUser = utilisateurForm(request.POST or None, instance=user)
     if request.method == "POST":
+        print("HERE")
+        modifierUser = utilisateurForm(request.POST or None, instance=user)
         if modifierUser.is_valid():
             modifierUser.save()
             return HTTPResponseHXRedirect(redirect_to=reverse_lazy("users"))
-    context = {'modifierUser': modifierUser}
+    else:
+        modifierUser = utilisateurForm(instance=user)
+        print("ICI")
+    context = {'modifierUser': modifierUser, 'user':user}
     return render(request, folderLocation+'edit/userEdit.html', context)
 
 @csrf_exempt

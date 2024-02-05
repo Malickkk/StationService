@@ -1,16 +1,2 @@
-{% extends "interfaces/administ/formTemplate.html" %}
-{% load crispy_forms_tags %}
-
-{% block title %}Paramètres de base - Supprimer Article{% endblock title %} 
-
-{% block idTitle %}deleteArticleID{% endblock idTitle %}
-{% block formTitle %}Suppression d'Article{% endblock formTitle %} 
-{% block body %}
-<div>
-    <form method="post">
-        Supprimer {{article}}? 
-    </form>
-   
-</div>
-{% endblock body %} 
-{% block retour %}{% url 'articles' %}{% endblock retour %}
+{% extends "interfaces/administ/modalDelete.html" %}
+{% block element %}{{article}}{% endblock element %}

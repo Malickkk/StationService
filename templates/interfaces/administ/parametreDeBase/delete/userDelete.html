@@ -1,19 +1,2 @@
-{% load crispy_forms_tags %}
-<div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title">Confirmer suppression</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-        <p>Voulez vous supprimer {{user}}?</p>
-        <p class="text-muted">Cette action est irreversible</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-        Annuler
-        </button>
-        <button type="submit" class="btn btn-primary" hx-post ="{% url 'userdelete' pk=user.pk %}">
-            Supprimer
-        </button>
-    </div>
-</div>
+{% extends "interfaces/administ/modalDelete.html" %}
+{% block element %}{{user}}{% endblock element %}

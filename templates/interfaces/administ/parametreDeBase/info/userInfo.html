@@ -1,35 +1,27 @@
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
-<form hx-post="{{ request.path }}" class="modal-content" hx-trigger="submit, load" >
-  <div class="modal-header">
-    <h5 class="modal-title">Info d'utilisateur</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-  </div>
-<div class="modal-body">
+
+{% block modalTitle %}Profil d'utilisateur{% endblock modalTitle %}
+{% block modalBody %}
 <fieldset disabled>
-<div class="row">
-   <div class="col-md-6 mb-0">
-     {{ infoUser.nom|as_crispy_field }}
-   </div>
-   <div class="col-md-6 mb-0">
-     {{ infoUser.prenom|as_crispy_field }}
-   </div>
- </div>
- <div class="row">
-     {{ infoUser.email|as_crispy_field }}
- </div>
- <div class="row">
+  <div class="row">
      <div class="col-md-6 mb-0">
-       {{ infoUser.dob|as_crispy_field }}
+       {{ infoUser.nom|as_crispy_field }}
      </div>
      <div class="col-md-6 mb-0">
-       {{ infoUser.profiluser|as_crispy_field }}
+       {{ infoUser.prenom|as_crispy_field }}
      </div>
- </div>
-</fieldset>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-    Retour
-  </button>
-</div>
-</form>
+   </div>
+   <div class="row">
+       {{ infoUser.email|as_crispy_field }}
+   </div>
+   <div class="row">
+       <div class="col-md-6 mb-0">
+         {{ infoUser.dob|as_crispy_field }}
+       </div>
+       <div class="col-md-6 mb-0">
+         {{ infoUser.profiluser|as_crispy_field }}
+       </div>
+   </div>
+  </fieldset>
+{% endblock modalBody %}

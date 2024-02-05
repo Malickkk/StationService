@@ -1,24 +1,8 @@
-{% extends "interfaces/administ/formTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Paramètres de base - Modifier operation{% endblock title %} 
-
-{% block idTitle %}modifierNatOpID{% endblock idTitle %}
-{% block formTitle %}Modification d'operation{% endblock formTitle %} 
-{% block body %}
-<div class="row">
-    {{ modifierNatOp.codope|as_crispy_field }}
-</div>
-<div class="row">
-    {{ modifierNatOp.libope|as_crispy_field }}
-</div>
-<div class="row">
-    <div class="col-md-6 mb-0">
-        {{ modifierNatOp.saiqte|as_crispy_field }}
-    </div>
-    <div class="col-md-6 mb-0">
-        {{ modifierNatOp.saival|as_crispy_field }}
-    </div>
-</div>
-{% endblock body %} 
-{% block retour %}{% url 'natOps' %}{% endblock retour %}
+{% block modalTitle %}Modification d'une opération{% endblock modalTitle %}
+{% block modalBody %}
+{{ modifierNatOp|crispy }}
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Modifier</button>{% endblock modalButton %}

@@ -1,11 +1,10 @@
-{% extends "interfaces/administ/formTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Paramètres de base - Modifier famille Article{% endblock title %} 
+{% block modalTitle %}Modification{% endblock modalTitle %}
+{% block modalBody %}
+{{ modifierfamilleArticle|crispy }}
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Créer</button>{% endblock modalButton %}
 
-{% block idTitle %}modifierfamilleArticleID{% endblock idTitle %}
-{% block formTitle %}Modification de famille d'Articles{% endblock formTitle %} 
-{% block body %}
-    {{ modifierfamilleArticle|crispy }}
-{% endblock body %} 
-{% block retour %}{% url 'familleArticles' %}{% endblock retour %}
+

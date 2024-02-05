@@ -1,11 +1,8 @@
-{% extends "interfaces/administ/formTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Paramètres de base - Modifier Article{% endblock title %} 
-
-{% block idTitle %}creerArticleID{% endblock idTitle %}
-{% block formTitle %}Modification d'Article{% endblock formTitle %} 
-{% block body %}
-    {{ modifierarticle|crispy }}
-{% endblock body %} 
-{% block retour %}{% url 'articles' %}{% endblock retour %}
+{% block modalTitle %}Modification d'un article{% endblock modalTitle %}
+{% block modalBody %}
+{{ modifierarticle|crispy }}
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Modifier</button>{% endblock modalButton %}
