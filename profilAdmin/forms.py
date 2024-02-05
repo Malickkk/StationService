@@ -37,7 +37,7 @@ class stationServiceForm(forms.ModelForm):
             'iduser': "Gérant", 
             "idpays": "Pays",
             "idville": "Ville",
-            "codstation": "Code de la station",
+            "codstation": "Code station",
             "adrgeo": "Adresse géographique",
             "telresp1": "Telephone responsable 1",
             "telresp2": "Telephone responsable 2",

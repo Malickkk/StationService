@@ -1,11 +1,8 @@
-{% extends "interfaces/administ/formTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Création Tarif Client{% endblock title %} 
-
-{% block idTitle %}creerTarifClientID{% endblock idTitle %}
-{% block formTitle %}Création Tarif Client{% endblock formTitle %} 
-{% block body %}
+{% block modalTitle %}Création d'un tarif de client{% endblock modalTitle %}
+{% block modalBody %}
 <div class="row">
   <div class="col-md-4 mb-0">
     {{ creerTarifClient.clients|as_crispy_field }}
@@ -25,5 +22,5 @@
       {{ creerTarifClient.datefin|as_crispy_field }}
     </div>
 </div>
-{% endblock body %} 
-{% block retour %}{% url 'tarifClient' %}{% endblock retour %}
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Créer</button>{% endblock modalButton %}

@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+import json
 
 from .models import *
 from .forms import *
@@ -14,6 +17,13 @@ folderLocation = 'interfaces/administ/parametreDeBase/'
 def indexAdmin(request):
     context={}
     return render(request, 'interfaces/administ/indexAdmin.html', context)
+
+# REDIRECT TO A NEW LOCATION
+class HTTPResponseHXRedirect(HttpResponseRedirect):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self['HX-Redirect']=self['Location']
+    status_code = 200
 
 # ************* Section Station Services *************
 
@@ -74,7 +84,7 @@ def userCreate(request):
         creerUserForm = utilisateurForm(request.POST or None)
         if creerUserForm.is_valid():
             creerUserForm.save()
-            return redirect('users')
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("users"))
     else:
         creerUserForm = utilisateurForm()
     context={'creerUserForm' : creerUserForm}
@@ -83,17 +93,20 @@ def userCreate(request):
 @csrf_exempt
 def userEdit(request, pk):
     user = get_object_or_404(Utilisateur, iduser=pk)
-    modifierUser = utilisateurForm(request.POST or None, instance=user)
-    if modifierUser.is_valid():
-        modifierUser.save()
-        return redirect('users')
-    context = {'modifierUser': modifierUser}
+    if request.method == "POST":
+        modifierUser = utilisateurForm(request.POST or None, instance=user)
+        if modifierUser.is_valid():
+            modifierUser.save()
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("users"))
+    else:
+        modifierUser = utilisateurForm(instance=user)
+    context = {'modifierUser': modifierUser, 'user':user}
     return render(request, folderLocation+'edit/userEdit.html', context)
 
 @csrf_exempt
 def userInfo(request, pk):
     user = get_object_or_404(Utilisateur, iduser=pk)
-    infoUser = utilisateurForm(request.POST or None, instance=user)
+    infoUser = utilisateurForm(instance=user)
     context = {'infoUser': infoUser}
     return render(request, folderLocation+'info/userInfo.html', context)
 
@@ -102,7 +115,7 @@ def userDelete(request, pk):
     user = get_object_or_404(Utilisateur, iduser=pk)
     if request.method == 'POST':
         user.delete()
-        return redirect('users')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("users"))
     context = {'user': user}
     return render(request, folderLocation+'delete/userDelete.html', context)
 
@@ -157,7 +170,6 @@ def articleDelete(request, pk):
 
 def tarifs(request):
     tarifs = Tarif.objects.all()
-    print(type(tarifs[1].monttarif))
     context={'values' : tarifs}
     return render(request, folderLocation+'index/tarifs.html', context)
 

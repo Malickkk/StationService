@@ -1,28 +1,27 @@
-{% extends "interfaces/administ/infoTemplate.html" %}
-
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
-{% block title %}User Info{% endblock title%}
-{% block formTitle %}Information d'utilisateur{% endblock formTitle %} 
 
-{% block body %} 
-<div class="row">
-   <div class="col-md-6 mb-0">
-     {{ infoUser.nom|as_crispy_field }}
-   </div>
-   <div class="col-md-6 mb-0">
-     {{ infoUser.prenom|as_crispy_field }}
-   </div>
- </div>
- <div class="row">
-     {{ infoUser.email|as_crispy_field }}
- </div>
- <div class="row">
+{% block modalTitle %}Profil d'utilisateur{% endblock modalTitle %}
+{% block modalBody %}
+<fieldset disabled>
+  <div class="row">
      <div class="col-md-6 mb-0">
-       {{ infoUser.dob|as_crispy_field }}
+       {{ infoUser.nom|as_crispy_field }}
      </div>
      <div class="col-md-6 mb-0">
-       {{ infoUser.profiluser|as_crispy_field }}
+       {{ infoUser.prenom|as_crispy_field }}
      </div>
- </div>
-{% endblock body %}
-{% block retour %}{% url 'users' %}{% endblock retour %}
+   </div>
+   <div class="row">
+       {{ infoUser.email|as_crispy_field }}
+   </div>
+   <div class="row">
+       <div class="col-md-6 mb-0">
+         {{ infoUser.dob|as_crispy_field }}
+       </div>
+       <div class="col-md-6 mb-0">
+         {{ infoUser.profiluser|as_crispy_field }}
+       </div>
+   </div>
+  </fieldset>
+{% endblock modalBody %}

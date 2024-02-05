@@ -1,11 +1,8 @@
-{% extends "interfaces/administ/formTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Paramètres de base - Créer un nouvel Article{% endblock title %} 
-
-{% block idTitle %}creerArticleID{% endblock idTitle %}
-{% block formTitle %}Création d'Article{% endblock formTitle %} 
-{% block body %}
-    {{ creerarticleForm|crispy }}
-{% endblock body %} 
-{% block retour %}{% url 'articles' %}{% endblock retour %}
+{% block modalTitle %}Création d'un article{% endblock modalTitle %}
+{% block modalBody %}
+{{ creerarticleForm|crispy }}
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Créer</button>{% endblock modalButton %}

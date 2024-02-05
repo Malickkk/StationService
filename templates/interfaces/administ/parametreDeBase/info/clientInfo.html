@@ -1,40 +1,33 @@
-{% extends "interfaces/administ/infoTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Paramètres de base - Info sur client{% endblock title %} 
-
-{% block idTitle %}infoClientID{% endblock idTitle %}
-{% block formTitle %}Information de client{% endblock formTitle %} 
-{% block body %}
-<div class="row">
-    <div class="col-md-4 mb-0">
-        {{ infoClient.codcli|as_crispy_field }}
-    </div>
-    <div class="col-md-8 mb-0">
-        {{ infoClient.raisonsoc|as_crispy_field }}
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4 mb-0">
-        {{ infoClient.pays|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
-        {{ infoClient.ville|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
-        {{ infoClient.adrgeo|as_crispy_field }}
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4 mb-0">
-        {{ infoClient.email|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
-        {{ infoClient.telresp1|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
-        {{ infoClient.telresp2|as_crispy_field }}
-    </div>
-</div>
-{% endblock body %} 
-{% block retour %}{% url 'clients' %}{% endblock retour %}
+{% block modalTitle %}Informations{% endblock modalTitle %}
+{% block modalBody %}
+<fieldset disabled>
+    <div class="row">
+        <div class="col-md-4 mb-0">
+          {{ infoClient.codcli|as_crispy_field }}
+        </div>
+        <div class="col-md-8 mb-0">
+          {{ infoClient.raisonsoc|as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-0">
+          {{ infoClient.pays|as_crispy_field }}
+        </div>
+        <div class="col-md-6 mb-0">
+          {{ infoClient.ville|as_crispy_field }}
+        </div>
+          {{ infoClient.adrgeo|as_crispy_field }}
+          {{ infoClient.email|as_crispy_field }}
+      <div class="row">
+        <div class="col-md-6 mb-0">
+          {{ infoClient.telresp1|as_crispy_field }}
+        </div>
+        <div class="col-md-6 mb-0">
+          {{ infoClient.telresp2|as_crispy_field }}
+        </div>
+      </div>
+</fieldset>
+{% endblock modalBody %}

@@ -1,40 +1,32 @@
-{% extends "interfaces/administ/formTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Paramètres de base - Créer un nouveau client{% endblock title %} 
-
-{% block idTitle %}creerClientID{% endblock idTitle %}
-{% block formTitle %}Création d'un client{% endblock formTitle %} 
-{% block body %}
+{% block modalTitle %}Création d'un client{% endblock modalTitle %}
+{% block modalBody %}
 <div class="row">
-    <div class="col-md-4 mb-0">
-      {{ creerClient.codcli|as_crispy_field }}
-    </div>
-    <div class="col-md-8 mb-0">
-      {{ creerClient.raisonsoc|as_crispy_field }}
-    </div>
+  <div class="col-md-4 mb-0">
+    {{ creerClient.codcli|as_crispy_field }}
+  </div>
+  <div class="col-md-8 mb-0">
+    {{ creerClient.raisonsoc|as_crispy_field }}
+  </div>
 </div>
 <div class="row">
-    <div class="col-md-4 mb-0">
-      {{ creerClient.pays|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
-      {{ creerClient.ville|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
-      {{ creerClient.adrgeo|as_crispy_field }}
-    </div>
-</div>
+  <div class="col-md-6 mb-0">
+    {{ creerClient.pays|as_crispy_field }}
+  </div>
+  <div class="col-md-6 mb-0">
+    {{ creerClient.ville|as_crispy_field }}
+  </div>
+    {{ creerClient.adrgeo|as_crispy_field }}
+    {{ creerClient.email|as_crispy_field }}
 <div class="row">
-    <div class="col-md-4 mb-0">
-      {{ creerClient.email|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
-      {{ creerClient.telresp1|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
-      {{ creerClient.telresp2|as_crispy_field }}
-    </div>
+  <div class="col-md-6 mb-0">
+    {{ creerClient.telresp1|as_crispy_field }}
+  </div>
+  <div class="col-md-6 mb-0">
+    {{ creerClient.telresp2|as_crispy_field }}
+  </div>
 </div>
-{% endblock body %} 
-{% block retour %}{% url 'clients' %}{% endblock retour %}
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Créer</button>{% endblock modalButton %}

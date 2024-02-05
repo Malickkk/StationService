@@ -1,11 +1,8 @@
-{% extends "interfaces/administ/formTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Création d'utilisateur{% endblock title %} 
-
-{% block idTitle %}creerUserID{% endblock idTitle %}
-{% block formTitle %}Création d'un utilisateur{% endblock formTitle %} 
-{% block body %}
+{% block modalTitle %}Création d'un utilisateur{% endblock modalTitle %}
+{% block modalBody %}
 <div class="row">
   <div class="col-md-6 mb-0">
     {{ creerUserForm.nom|as_crispy_field }}
@@ -25,5 +22,5 @@
       {{ creerUserForm.profiluser|as_crispy_field }}
     </div>
 </div>
-{% endblock body %} 
-{% block retour %}{% url 'users' %}{% endblock retour %}
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Créer</button>{% endblock modalButton %}

@@ -1,24 +1,20 @@
-{% extends "interfaces/administ/formTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Modification{% endblock title %}
-
-{% block idTitle %}editTarifID{% endblock idTitle %}
-{% block formTitle %}Modification de tarif{% endblock formTitle %} 
-{% block body %}
+{% block modalTitle %}Modification d'un tarif{% endblock modalTitle %}
+{% block modalBody %}
 <div class="row">
-    {{ modifierTarif.idarticle|as_crispy_field }}
+  {{ modifierTarif.idarticle|as_crispy_field }}
 </div>
 <div class="row">
-    {{ modifierTarif.monttarif|as_crispy_field }}
+  {{ modifierTarif.monttarif|as_crispy_field }}
 </div>
 <div class="row">
-  <div class="col-md-6 mb-0">
-    {{ modifierTarif.datedebut|as_crispy_field }}
-  </div>
-  <div class="col-md-6 mb-0">
-    {{ modifierTarif.datefin|as_crispy_field }}
-  </div>
+<div class="col-md-6 mb-0">
+  {{ modifierTarif.datedebut|as_crispy_field }}
 </div>
-{% endblock body %} 
-{% block retour %}{% url 'tarifs' %}{% endblock retour %}
+<div class="col-md-6 mb-0">
+  {{ modifierTarif.datefin|as_crispy_field }}
+</div>
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Modifier</button>{% endblock modalButton %}

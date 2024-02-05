@@ -1,56 +1,51 @@
-{% extends "interfaces/administ/infoTemplate.html" %}
+{% extends "interfaces/administ/modalTemplate.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Information{% endblock title %}
-
-{% block idTitle %}infoStationID{% endblock idTitle %}
-{% block formTitle %}Consultation d'info pour station service{% endblock formTitle %} 
-{% block body %}
-<div class="row">
-    <div class="col-md-6 mb-0">
-      {{ infostation.iduser|as_crispy_field }}
+{% block modalTitle %}Informations{% endblock modalTitle %}
+{% block modalBody %}
+<fieldset disabled>
+  <div class="row">
+    <div class="col-md-4 mb-0">
+      {{ infoStation.codstation|as_crispy_field }}
     </div>
-    <div class="col-md-6 mb-0">
-      {{ infostation.codstation|as_crispy_field }}
+    <div class="col-md-8 mb-0">
+      {{ infoStation.iduser|as_crispy_field }}
     </div>
-  </div>
-  <div class="row">
-      <div class="col-md-4 mb-0">
-        {{ infostation.pays|as_crispy_field }}
-      </div>
-      <div class="col-md-4 mb-0">
-        {{ infostation.ville|as_crispy_field }}
-      </div>
-      <div class="col-md-4 mb-0">
-          {{ infostation.adrgeo|as_crispy_field }}
-        </div>
+    
   </div>
   <div class="row">
       <div class="col-md-6 mb-0">
-        {{ infostation.telresp1|as_crispy_field }}
+        {{ infoStation.pays|as_crispy_field }}
       </div>
       <div class="col-md-6 mb-0">
-        {{ infostation.telresp2|as_crispy_field }}
+        {{ infoStation.ville|as_crispy_field }}
+      </div>
+  </div>
+    {{ infoStation.adrgeo|as_crispy_field }}
+  <div class="row">
+      <div class="col-md-6 mb-0">
+        {{ infoStation.telresp1|as_crispy_field }}
+      </div>
+      <div class="col-md-6 mb-0">
+        {{ infoStation.telresp2|as_crispy_field }}
       </div>
   </div>
   <div class="row">
-      <div class="col-md-4 mb-0">
-        {{ infostation.nbdecuve|as_crispy_field }}
+      <div class="col-md-6 mb-0">
+        {{ infoStation.nbdecuve|as_crispy_field }}
       </div>
-      <div class="col-md-4 mb-0">
-        {{ infostation.nbdepompe|as_crispy_field }}
+      <div class="col-md-6 mb-0">
+        {{ infoStation.nbdepompe|as_crispy_field }}
       </div>
-      <div class="col-md-4 mb-0">
-          {{ infostation.capcuve|as_crispy_field }}
-        </div>
+      {{ infoStation.capcuve|as_crispy_field }}
   </div>
   <div class="row">
       <div class="col-md-6 mb-0">
-        {{ infostation.jourcpta|as_crispy_field }}
+        {{ infoStation.jourcpta|as_crispy_field }}
       </div>
       <div class="col-md-6 mb-0">
-        {{ infostation.exocpta|as_crispy_field }}
+        {{ infoStation.exocpta|as_crispy_field }}
       </div>
   </div>
-{% endblock body %} 
-{% block retour %}{% url 'stationServices' %}{% endblock retour %}
+</fieldset>
+{% endblock modalBody %}
