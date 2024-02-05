@@ -1,2 +1,3 @@
 {% extends "interfaces/administ/modalDelete.html" %}
-{% block element %}{{tarif}}{% endblock element %}{{tarif}}? 
+{% block modalBody %}ce tarif pour {{tarif}}{% endblock modalBody %}
+{% block modalDelete %}{% url 'tarifdelete' pk=tarif.pk %}{% endblock modalDelete %}

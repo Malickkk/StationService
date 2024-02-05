@@ -3,24 +3,22 @@
 
 {% block modalTitle %}Création d'un tarif de client{% endblock modalTitle %}
 {% block modalBody %}
-<div class="row">
-  <div class="col-md-4 mb-0">
-    {{ creerTarifClient.clients|as_crispy_field }}
-  </div>
-  <div class="col-md-4 mb-0">
-    {{ creerTarifClient.idarticle|as_crispy_field }}
-  </div>
-  <div class="col-md-4 mb-0">
-    {{ creerTarifClient.monttarif|as_crispy_field }}
-  </div>
-</div>
-<div class="row">
-    <div class="col-md-6 mb-0">
-      {{ creerTarifClient.datedebut|as_crispy_field }}
+{{ creerTarifClient.clients|as_crispy_field }}
+  <div class="row">
+    <div class="col-md-8 mb-0">
+      {{ creerTarifClient.idarticle|as_crispy_field }}
     </div>
-    <div class="col-md-6 mb-0">
-      {{ creerTarifClient.datefin|as_crispy_field }}
+    <div class="col-md-4 mb-0">
+      {{ creerTarifClient.monttarif|as_crispy_field }}
     </div>
-</div>
+  </div>
+  <div class="row">
+      <div class="col-md-6 mb-0">
+        {{ creerTarifClient.datedebut|as_crispy_field }}
+      </div>
+      <div class="col-md-6 mb-0">
+        {{ creerTarifClient.datefin|as_crispy_field }}
+      </div>
+  </div>
 {% endblock modalBody %}
 {% block modalButton %}<button type="submit" class="btn btn-primary">Créer</button>{% endblock modalButton %}

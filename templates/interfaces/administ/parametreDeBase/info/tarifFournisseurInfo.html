@@ -4,24 +4,22 @@
 {% block modalTitle %}Informations{% endblock modalTitle %}
 {% block modalBody %}
 <fieldset disabled>
-  <div class="row">
-    <div class="col-md-4 mb-0">
-      {{ infoTarifFournisseur.idfourn|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
-      {{ infoTarifFournisseur.idarticle|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
-      {{ infoTarifFournisseur.monttarif|as_crispy_field }}
-      </div>
+  {{ infoTarifFournisseur.idfourn|as_crispy_field }}
+<div class="row">
+  <div class="col-md-8 mb-0">
+    {{ infoTarifFournisseur.idarticle|as_crispy_field }}
   </div>
-  <div class="row">
-      <div class="col-md-6 mb-0">
-      {{ infoTarifFournisseur.datedebut|as_crispy_field }}
-      </div>
-      <div class="col-md-6 mb-0">
-      {{ infoTarifFournisseur.datefin|as_crispy_field }}
-      </div>
+  <div class="col-md-4 mb-0">
+    {{ infoTarifFournisseur.monttarif|as_crispy_field }}
   </div>
+</div>
+<div class="row">
+  <div class="col-md-6 mb-0">
+    {{ infoTarifFournisseur.datedebut|as_crispy_field }}
+  </div>
+  <div class="col-md-6 mb-0">
+    {{ infoTarifFournisseur.datefin|as_crispy_field }}
+  </div>
+</div>
 </fieldset>
 {% endblock modalBody %}

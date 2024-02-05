@@ -542,7 +542,7 @@ class TarifsClient(models.Model):
         
 
     def __str__(self):
-        return self.clients.codcli + ' - ' + str(self.monttarif)
+        return self.clients.raisonsoc
 
 
 class Tarifsfourn(models.Model):

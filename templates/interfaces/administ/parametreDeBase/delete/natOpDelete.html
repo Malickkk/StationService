@@ -1,2 +1,3 @@
 {% extends "interfaces/administ/modalDelete.html" %}
-{% block element %}{{natOp}}{% endblock element %}
+{% block modalBody %}{{natOp}}{% endblock modalBody %}
+{% block modalDelete %}{% url 'natOpdelete' pk=natOp.pk %}{% endblock modalDelete %}

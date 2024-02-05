@@ -3,24 +3,22 @@
 
 {% block modalTitle %}Modification d'un tarif de client{% endblock modalTitle %}
 {% block modalBody %}
-<div class="row">
-  <div class="col-md-4 mb-0">
-    {{ modifierTarifClient.clients|as_crispy_field }}
-  </div>
-  <div class="col-md-4 mb-0">
-    {{ modifierTarifClient.idarticle|as_crispy_field }}
-  </div>
-  <div class="col-md-4 mb-0">
-    {{ modifierTarifClient.monttarif|as_crispy_field }}
-  </div>
-</div>
-<div class="row">
-    <div class="col-md-6 mb-0">
-      {{ modifierTarifClient.datedebut|as_crispy_field }}
+{{ modifierTarifClient.clients|as_crispy_field }}
+  <div class="row">
+    <div class="col-md-8 mb-0">
+      {{ modifierTarifClient.idarticle|as_crispy_field }}
     </div>
-    <div class="col-md-6 mb-0">
-      {{ modifierTarifClient.datefin|as_crispy_field }}
+    <div class="col-md-4 mb-0">
+      {{ modifierTarifClient.monttarif|as_crispy_field }}
     </div>
-</div>
+  </div>
+  <div class="row">
+      <div class="col-md-6 mb-0">
+        {{ modifierTarifClient.datedebut|as_crispy_field }}
+      </div>
+      <div class="col-md-6 mb-0">
+        {{ modifierTarifClient.datefin|as_crispy_field }}
+      </div>
+  </div>
 {% endblock modalBody %}
 {% block modalButton %}<button type="submit" class="btn btn-primary">Modifier</button>{% endblock modalButton %}

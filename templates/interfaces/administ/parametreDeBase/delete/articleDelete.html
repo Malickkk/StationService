@@ -1,2 +1,3 @@
 {% extends "interfaces/administ/modalDelete.html" %}
-{% block element %}{{article}}{% endblock element %}
+{% block modalBody %}{{article}}{% endblock modalBody %}
+{% block modalDelete %}{% url 'articledelete' pk=article.pk %}{% endblock modalDelete %}

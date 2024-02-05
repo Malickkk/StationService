@@ -3,29 +3,22 @@
 
 {% block modalTitle %}Modification d'un tarif de fournisseur{% endblock modalTitle %}
 {% block modalBody %}
+{{ modifierTarifFournisseur.idfourn|as_crispy_field }}
 <div class="row">
-  <div class="col-md-4 mb-0">
-    {{ modifierTarifFournisseur.idfourn|as_crispy_field }}
-  </div>
-  <div class="col-md-4 mb-0">
+  <div class="col-md-8 mb-0">
     {{ modifierTarifFournisseur.idarticle|as_crispy_field }}
   </div>
   <div class="col-md-4 mb-0">
     {{ modifierTarifFournisseur.monttarif|as_crispy_field }}
-    </div>
+  </div>
 </div>
 <div class="row">
-    <div class="col-md-6 mb-0">
+  <div class="col-md-6 mb-0">
     {{ modifierTarifFournisseur.datedebut|as_crispy_field }}
-    </div>
-    <div class="col-md-6 mb-0">
+  </div>
+  <div class="col-md-6 mb-0">
     {{ modifierTarifFournisseur.datefin|as_crispy_field }}
-    </div>
+  </div>
 </div>
-<<<<<<< HEAD
-{% endblock body %} 
-{% block retour %}{% url 'tarifFournisseur' %}{% endblock retour %}
-=======
 {% endblock modalBody %}
-{% block modalButton %}<button type="submit" class="btn btn-primary">Créer</button>{% endblock modalButton %}
->>>>>>> use-modal
+{% block modalButton %}<button type="submit" class="btn btn-primary">Modifier</button>{% endblock modalButton %}

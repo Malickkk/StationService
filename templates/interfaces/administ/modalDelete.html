@@ -4,14 +4,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-        <p>Voulez vous supprimer {% block element %}{% endblock element %}?</p>
+        <p>Voulez vous supprimer {% block modalBody %}{% endblock modalBody %}?</p>
         <p class="text-muted">Cette action est irreversible</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
         Retour
         </button>
-        <button type="submit" class="btn btn-primary" hx-post ="{% url 'userdelete' pk=user.pk %}">
+        <button type="submit" class="btn btn-primary" hx-post ="{% block modalDelete %}{% endblock modalDelete %}">
             Supprimer
         </button>
     </div>

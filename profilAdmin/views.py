@@ -38,7 +38,8 @@ def stationCreate(request):
         creerStationForm = stationServiceForm(request.POST)
         if creerStationForm.is_valid():
             creerStationForm.save()
-            return redirect('stationServices')
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("stationServices"))
+
     else:
         creerStationForm = stationServiceForm()
     context={'creerStationForm' : creerStationForm}
@@ -50,15 +51,16 @@ def stationEdit(request, pk):
     modifierStation = stationServiceForm(request.POST or None, instance=station)
     if modifierStation.is_valid():
         modifierStation.save()
-        return redirect('stationServices')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("stationServices"))
+
     context = {'modifierStation': modifierStation}
     return render(request, folderLocation+'edit/stationEdit.html', context)
 
 @csrf_exempt
 def stationInfo(request, pk):
     station = get_object_or_404(Stationservice, idstation=pk)
-    infostation = stationServiceForm(request.POST or None, instance=station)
-    context = {'infostation': infostation}
+    infoStation = stationServiceForm(request.POST or None, instance=station)
+    context = {'infoStation': infoStation}
     return render(request, folderLocation+'info/stationInfo.html', context)
 
 @csrf_exempt
@@ -66,7 +68,7 @@ def stationDelete(request, pk):
     station = get_object_or_404(Stationservice, idstation=pk)
     if request.method == 'POST':
         station.delete()
-        return redirect('stationServices')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("stationServices"))
     context = {'station': station}
     return render(request, folderLocation+'delete/stationDelete.html', context)
 
@@ -251,7 +253,7 @@ def familleArticleInfo(request, pk):
 
 @csrf_exempt
 def familleArticleDelete(request, pk):
-    familleArticle = get_object_or_404(familleArticle, idfamille=pk)
+    familleArticle = get_object_or_404(FamilleArticle, idfamille=pk)
     if request.method == 'POST':
         familleArticle.delete()
         return redirect('familleArticles')

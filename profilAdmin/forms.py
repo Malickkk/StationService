@@ -119,8 +119,8 @@ class tarifClientForm(forms.ModelForm):
         model = TarifsClient
         fields = '__all__'
         labels = {
-            'idcli' : 'Client',
-            'idArticle': "Article", 
+            'clients' : 'Client',
+            'idarticle': "Libellé de l'article", 
             "datedebut": "Date de debut de validité",
             "datefin": "Date de fin de validité",
             "monttarif": "Montant",
@@ -137,7 +137,7 @@ class tarifFournForm(forms.ModelForm):
         fields = '__all__'
         labels = {
             'idfourn' : 'Fournisseur',
-            'idArticle': "Article", 
+            'idarticle': "Libellé de l'article", 
             "datedebut": "Date de debut de validité",
             "datefin": "Date de fin de validité",
             "monttarif": "Montant",
@@ -215,7 +215,7 @@ class clientForm(forms.ModelForm):
 
 class fournForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(Fournisseur, self).__init__(*args, **kwargs)
+        super(fournForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance and instance.pk:
             # READ ONLY FIELD FOR THE CODE, CANNOT BE EDITED ONCE CREATED

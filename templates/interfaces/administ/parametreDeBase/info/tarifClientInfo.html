@@ -4,11 +4,9 @@
 {% block modalTitle %}Informations{% endblock modalTitle %}
 {% block modalBody %}
 <fieldset disabled>
-  <div class="row">
-    <div class="col-md-4 mb-0">
       {{ infoTarifClient.clients|as_crispy_field }}
-    </div>
-    <div class="col-md-4 mb-0">
+  <div class="row">
+    <div class="col-md-8 mb-0">
       {{ infoTarifClient.idarticle|as_crispy_field }}
     </div>
     <div class="col-md-4 mb-0">
