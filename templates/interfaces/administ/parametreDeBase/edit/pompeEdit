@@ -1,0 +1,8 @@
+{% extends "interfaces/administ/modalTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block modalTitle %}Modification{% endblock modalTitle %}
+{% block modalBody %}
+    {{modifierPompe|crispy}}
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Modifier</button>{% endblock modalButton %}

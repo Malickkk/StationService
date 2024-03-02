@@ -9,11 +9,13 @@
 
 {% block col1 %}Article{% endblock col1 %}
 {% block col2 %}Montant{% endblock col2 %}
-{% block col3 %}Periode de validité{% endblock col3 %}
+{% block col3 %}Début de validité{% endblock col3 %}
+{% block col4 %}Fin de validité{% endblock col4 %}
 
 {% block value1 %}{{val.idarticle}}{% endblock value1 %}
 {% block value2 %}{{val.monttarif}}{% endblock value2 %}
-{% block value3 %}{{val.datedebut}} - {{val.datefin}}{% endblock value3 %}
+{% block value3 %}{{val.datedebut}}{% endblock value3 %}
+{% block value4 %}{{val.datefin}}{% endblock value4 %}
 
 {% block infoLink %}{% url 'tarifinfo' val.pk %}{% endblock infoLink %}
 {% block editLink %}{% url 'tarifedit' val.pk %}{% endblock editLink %}

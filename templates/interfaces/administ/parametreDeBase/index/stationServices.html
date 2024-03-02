@@ -3,17 +3,19 @@
 
 {% block pageLink %}{% url 'stationcreate'  %}{% endblock pageLink %}
 
-{% block indexTitle %}Gestion des stations Services{% endblock indexTitle %}
+{% block indexTitle %}Gestion des stations services{% endblock indexTitle %}
 
 {% block tableTitle %}Mes Station Services{% endblock tableTitle %}
 
-{% block col1 %}Gérant{% endblock col1 %}
-{% block col2 %}Ville{% endblock col2 %}
-{% block col3 %}Adresse{% endblock col3 %}
+{% block col1 %}Code Station{% endblock col1 %}
+{% block col2 %}Gérant{% endblock col2 %}
+{% block col3 %}Ville{% endblock col3 %}
+{% block col4 %}Adresse{% endblock col4 %}
 
-{% block value1 %}{{val.iduser}}{% endblock value1 %}
-{% block value2 %}{{val.ville}}{% endblock value2 %}
-{% block value3 %}{{val.adrgeo}}{% endblock value3 %}
+{% block value1 %}{{val.codstation}}{% endblock value1 %}
+{% block value2 %}{{val.iduser}}{% endblock value2 %}
+{% block value3 %}{{val.ville}}{% endblock value3 %}
+{% block value4 %}{{val.adrgeo}}{% endblock value4 %}
 
 {% block infoLink %}{% url 'stationinfo' val.pk %}{% endblock infoLink %}
 {% block editLink %}{% url 'stationedit' val.pk %}{% endblock editLink %}

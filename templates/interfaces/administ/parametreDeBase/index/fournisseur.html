@@ -11,10 +11,12 @@
 {% block col1 %}Raison Sociale{% endblock col1 %}
 {% block col2 %}Ville{% endblock col2 %}
 {% block col3 %}No Telephone{% endblock col3 %}
+{% block col4 %}E-mail{% endblock col4 %}
 
 {% block value1 %}{{val.raisonsoc}}{% endblock value1 %}
 {% block value2 %}{{val.ville}}{% endblock value2 %}
 {% block value3 %}{{val.telresp1}}{% endblock value3 %}
+{% block value4 %}{{val.email}}{% endblock value4 %}
 
 {% block infoLink %}{% url 'fournisseurinfo' val.pk %}{% endblock infoLink %}
 {% block editLink %}{% url 'fournisseuredit' val.pk %}{% endblock editLink %}

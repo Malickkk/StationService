@@ -113,6 +113,9 @@ class Cuve(models.Model):
         managed = True
         db_table = 'cuves'
 
+    def __str__(self):
+        return self.nomcuve
+
 
 class Client(models.Model):# ajouter: raison sociale 
     idcli = models.AutoField(primary_key=True)
@@ -292,12 +295,26 @@ class Lignebilan(models.Model):
         db_table = 'lignebilan'
 
 
+class Pompecuve(models.Model):
+    idpompe = models.AutoField(primary_key=True)
+    codpompe = models.CharField(unique=True, max_length=10)
+    idcuve = models.ForeignKey(Cuve, on_delete=models.CASCADE, db_column='idcuve')
+    idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
+    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
+    descrpompe = models.TextField()
+
+
+    class Meta:
+        managed = True
+        db_table = 'pompecuve'
+
+
 class Mvtpompecarburant(models.Model):
     idmvtpompe = models.AutoField(primary_key=True)
     idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
     idcuve = models.ForeignKey(Cuve, on_delete=models.CASCADE, db_column='idcuve')
     idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
-    idpompe = models.IntegerField( )
+    idpompe = models.ForeignKey(Pompecuve, on_delete=models.CASCADE, db_column='idpompe')
     idjournee = models.ForeignKey(Journeescomptable, on_delete=models.CASCADE, db_column='idjournee')
     datemvt = models.DateField( )
     indexfermeture = models.IntegerField( )
@@ -410,19 +427,6 @@ class Natopecaisse(models.Model):
     class Meta:
         managed = True
         db_table = 'natopecaisse'
-
-
-class Pompecuve(models.Model):
-    idpompe = models.IntegerField( )
-    codpompe = models.CharField(unique=True, max_length=10)
-    descrpompe = models.CharField(max_length=40)
-    idcuve = models.ForeignKey(Cuve, on_delete=models.CASCADE, db_column='idcuve')
-    idstation = models.ForeignKey(Stationservice, on_delete=models.CASCADE, db_column='idstation')
-    idarticle = models.ForeignKey(Article, on_delete=models.CASCADE, db_column='idarticle')
-
-    class Meta:
-        managed = True
-        db_table = 'pompecuve'
 
 
 class Regclient(models.Model):

@@ -1,0 +1,38 @@
+{% load bootstrap_icons %}
+
+<div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 
+  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {% bs_icon 'three-dots' %}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <h4 class="offcanvas-title" id="offcanvasExampleLabel">Menu Administrateur</h6>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <hr class="dropdown-divider">
+    <b><u>Paramètres de base</u></b>
+    <a class="dropdown-item" href="{% url 'stationServices' %}">Stations services</a>
+    <a class="dropdown-item" href="{% url 'natOps' %}">Nature d'opération</a>
+    <a class="dropdown-item" href="{% url 'familleArticles' %}">Famille d'Articles</a>
+    <a class="dropdown-item" href="{% url 'articles' %}">Articles</a>
+    <a class="dropdown-item" href="{% url 'tarifs' %}">Tarifs</a>
+    <a class="dropdown-item" href="{% url 'clients' %}">Clients</a>
+    <a class="dropdown-item" href="{% url 'tarifClient' %}">Tarifs clients</a>
+    <a class="dropdown-item" href="{% url 'fournisseurs' %}">Fournisseurs</a>
+    <a class="dropdown-item" href="{% url 'tarifFournisseur' %}">Tarifs fournisseurs</a>
+    <a class="dropdown-item" href="{% url 'cuves' %}">Cuves</a>
+    <a class="dropdown-item" href="{% url 'pompes' %}">Pompes cuves</a>
+    <a class="dropdown-item" href="{% url 'users' %}">Utilisateurs</a>
+</div> 
+</div>
+
+<div>
+  <a type=button class="btn" href="{% url 'indexAdmin' %}">Index Admin</a>
+  <a type=button class="btn" href="{% url 'indexGerant' %}">Index Gerant</a>
+  <a type=button class="btn" href="{% url 'indexAgent' %}">Index Agent</a>
+</div>
+
+<div class="logo">
+  <div class="btn-group" role="group">
+      <a type=button class="btn" href="{% url 'indexAdmin' %}">Accueil</a>
+  </div>
+</div>

@@ -14,9 +14,24 @@ from .forms import *
 
 folderLocation = 'interfaces/administ/parametreDeBase/'
 
-def indexAdmin(request):
+def index(request):
     context={}
+    return render(request, 'interfaces/administ/mainIndex.html', context)
+
+def indexAdmin(request):
+    interface="Administrateur"
+    context={'interface':interface}
     return render(request, 'interfaces/administ/indexAdmin.html', context)
+
+def indexGerant(request):
+    interface="Gerant"
+    context={'interface':interface}
+    return render(request, 'interfaces/gerant/indexGerant.html', context)
+
+def indexAgent(request):
+    interface="Agent"
+    context={'interface':interface}
+    return render(request, 'interfaces/agent/indexAgent.html', context)
 
 # REDIRECT TO A NEW LOCATION
 class HTTPResponseHXRedirect(HttpResponseRedirect):
@@ -135,7 +150,7 @@ def creerArticle(request):
         creerarticleForm = articleForm(request.POST)
         if creerarticleForm.is_valid():
             creerarticleForm.save()
-            return redirect('articles')
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("articles"))
     else:
         creerarticleForm = articleForm()
     context={'creerarticleForm' : creerarticleForm}
@@ -147,7 +162,7 @@ def articleEdit(request, pk):
     modifierarticle = articleForm(request.POST or None, instance=article)
     if modifierarticle.is_valid():
         modifierarticle.save()
-        return redirect('articles')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("articles"))
     context = {'modifierarticle': modifierarticle}
     return render(request, folderLocation+'edit/articleEdit.html', context)
 
@@ -163,7 +178,7 @@ def articleDelete(request, pk):
     article = get_object_or_404(Article, idarticle=pk)
     if request.method == 'POST':
         article.delete()
-        return redirect('articles')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("articles"))
     context = {'article': article}
     return render(request, folderLocation+'delete/articleDelete.html', context)
 
@@ -181,7 +196,7 @@ def tarifCreate(request): #verifier que les dates ne se chevauchent pas
         creerTarifForm = tarifForm(request.POST)
         if creerTarifForm.is_valid():
             creerTarifForm.save()
-            return redirect('tarifs')
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("tarifs"))
     else:
         creerTarifForm = tarifForm()
     context={'creerTarifForm' : creerTarifForm}
@@ -193,7 +208,7 @@ def tarifEdit(request, pk):
     modifierTarif = tarifForm(request.POST or None, instance=tarif)
     if modifierTarif.is_valid():
         modifierTarif.save()
-        return redirect('tarifs')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("tarifs"))
     context = {'modifierTarif': modifierTarif}
     return render(request, folderLocation+'edit/tarifEdit.html', context)
 
@@ -210,7 +225,7 @@ def tarifDelete(request, pk):
     tarif = get_object_or_404(Tarif, idtarif=pk)
     if request.method == 'POST':
         tarif.delete()
-        return redirect('tarifs')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("tarifs"))
     context = {'tarif': tarif}
     return render(request, folderLocation+'delete/tarifDelete.html', context)
 
@@ -228,7 +243,7 @@ def familleArticleCreate(request):
         creerfamilleArticleForm = familleArticleForm(request.POST)
         if creerfamilleArticleForm.is_valid():
             creerfamilleArticleForm.save()
-            return redirect('familleArticles')
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("familleArticles"))
     else:
         creerfamilleArticleForm = familleArticleForm()
     context={'creerfamilleArticleForm' : creerfamilleArticleForm}
@@ -240,7 +255,7 @@ def familleArticleEdit(request, pk):
     modifierfamilleArticle = familleArticleForm(request.POST or None, instance=familleArticle)
     if modifierfamilleArticle.is_valid():
         modifierfamilleArticle.save()
-        return redirect('familleArticles')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("familleArticles"))
     context = {'modifierfamilleArticle': modifierfamilleArticle}
     return render(request, folderLocation+'edit/familleArticleEdit.html', context)
 
@@ -256,7 +271,7 @@ def familleArticleDelete(request, pk):
     familleArticle = get_object_or_404(FamilleArticle, idfamille=pk)
     if request.method == 'POST':
         familleArticle.delete()
-        return redirect('familleArticles')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("familleArticles"))
     context = {'familleArticle': familleArticle}
     return render(request, folderLocation+'delete/familleArticleDelete.html', context)
 
@@ -274,7 +289,7 @@ def clientCreate(request):
         creerClient = clientForm(request.POST)
         if creerClient.is_valid():
             creerClient.save()
-            return redirect('clients')
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("clients"))
     else:
         creerClient = clientForm()
     context={'creerClient' : creerClient}
@@ -286,7 +301,7 @@ def clientEdit(request, pk):
     modifierClient = clientForm(request.POST or None, instance=client)
     if modifierClient.is_valid():
         modifierClient.save()
-        return redirect('clients')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("clients"))
     context = {'modifierClient': modifierClient}
     return render(request, folderLocation+'edit/clientEdit.html', context)
 
@@ -302,7 +317,7 @@ def clientDelete(request, pk):
     client = get_object_or_404(Client, idcli=pk)
     if request.method == 'POST':
         client.delete()
-        return redirect('clients')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("clients"))
     context = {'client': client}
     return render(request, folderLocation+'delete/clientDelete.html', context)
 
@@ -320,7 +335,7 @@ def tarifClientCreate(request):
         creerTarifClient = tarifClientForm(request.POST)
         if creerTarifClient.is_valid():
             creerTarifClient.save()
-            return redirect('tarifClient')
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("tarifClient"))
     else:
         creerTarifClient = tarifClientForm()
     context={'creerTarifClient' : creerTarifClient}
@@ -332,7 +347,7 @@ def tarifClientEdit(request, pk):
     modifierTarifClient = tarifClientForm(request.POST or None, instance=tarifClient)
     if modifierTarifClient.is_valid():
         modifierTarifClient.save()
-        return redirect('tarifClient')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("tarifClient"))
     context = {'modifierTarifClient': modifierTarifClient}
     return render(request, folderLocation+'edit/tarifClientEdit.html', context)
 
@@ -348,7 +363,7 @@ def tarifClientDelete(request, pk):
     tarifClient = get_object_or_404(TarifsClient, idtarcli=pk)
     if request.method == 'POST':
         tarifClient.delete()
-        return redirect('tarifClient')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("tarifClient"))
     context = {'tarifClient': tarifClient}
     return render(request, folderLocation+'delete/tarifClientDelete.html', context)
 
@@ -366,7 +381,7 @@ def fournisseurCreate(request):
         creerFournisseur = fournForm(request.POST)
         if creerFournisseur.is_valid():
             creerFournisseur.save()
-            return redirect('fournisseurs')
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("fournisseurs"))
     else:
         creerFournisseur = fournForm()
     context={'creerFournisseur' : creerFournisseur}
@@ -378,7 +393,7 @@ def fournisseurEdit(request, pk):
     modifierFournisseur = fournForm(request.POST or None, instance=fournisseur)
     if modifierFournisseur.is_valid():
         modifierFournisseur.save()
-        return redirect('fournisseurs')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("fournisseurs"))
     context = {'modifierFournisseur': modifierFournisseur}
     return render(request, folderLocation+'edit/fournisseurEdit.html', context)
 
@@ -394,7 +409,7 @@ def fournisseurDelete(request, pk):
     fournisseur = get_object_or_404(Fournisseur, idfourn=pk)
     if request.method == 'POST':
         fournisseur.delete()
-        return redirect('fournisseurs')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("fournisseurs"))
     context = {'fournisseur': fournisseur}
     return render(request, folderLocation+'delete/fournisseurDelete.html', context)
 
@@ -412,7 +427,7 @@ def tarifFournisseurCreate(request):
         creerTarifFournisseur = tarifFournForm(request.POST)
         if creerTarifFournisseur.is_valid():
             creerTarifFournisseur.save()
-            return redirect('tarifFournisseur')
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("tarifFournisseur"))
     else:
         creerTarifFournisseur = tarifFournForm()
     context={'creerTarifFournisseur' : creerTarifFournisseur}
@@ -424,7 +439,7 @@ def tarifFournisseurEdit(request, pk):
     modifierTarifFournisseur = tarifFournForm(request.POST or None, instance=tarifFournisseur)
     if modifierTarifFournisseur.is_valid():
         modifierTarifFournisseur.save()
-        return redirect('tarifFournisseur')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("tarifFournisseur"))
     context = {'modifierTarifFournisseur': modifierTarifFournisseur}
     return render(request, folderLocation+'edit/tarifFournisseurEdit.html', context)
 
@@ -440,7 +455,7 @@ def tarifFournisseurDelete(request, pk):
     tarifFournisseur = get_object_or_404(Tarifsfourn, idtarfourn=pk)
     if request.method == 'POST':
         tarifFournisseur.delete()
-        return redirect('tarifFournisseur')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("tarifFournisseur"))
     context = {'tarifFournisseur': tarifFournisseur}
     return render(request, folderLocation+'delete/tarifFournisseurDelete.html', context)
 
@@ -458,7 +473,7 @@ def natOpCreate(request):
         creerNatOp = natOpForm(request.POST)
         if creerNatOp.is_valid():
             creerNatOp.save()
-            return redirect('natOps')
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("natOps"))
     else:
         creerNatOp = natOpForm()
     context={'creerNatOp' : creerNatOp}
@@ -470,7 +485,7 @@ def natOpEdit(request, pk):
     modifierNatOp = natOpForm(request.POST or None, instance=natOp)
     if modifierNatOp.is_valid():
         modifierNatOp.save()
-        return redirect('natOps')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("natOps"))
     context = {'modifierNatOp': modifierNatOp}
     return render(request, folderLocation+'edit/natOpEdit.html', context)
 
@@ -486,6 +501,98 @@ def natOpDelete(request, pk):
     natOp = get_object_or_404(Natoperation, idnatope=pk)
     if request.method == 'POST':
         natOp.delete()
-        return redirect('natOps')
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("natOps"))
     context = {'natOp': natOp}
     return render(request, folderLocation+'delete/natOpDelete.html', context)
+
+
+# ************* Section Cuve *************
+
+def cuves(request):
+    cuve = Cuve.objects.all()
+    context={'values' : cuve}
+    return render(request, folderLocation+'index/cuve.html', context)
+
+@csrf_exempt
+def cuveCreate(request):
+    if request.method == 'POST':
+        creerCuve = cuveForm(request.POST)
+        if creerCuve.is_valid():
+            creerCuve.save()
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("cuves"))
+    else:
+        creerCuve = cuveForm()
+    context={'creerCuve' : creerCuve}
+    return render(request, folderLocation+'create/cuveCreate.html', context)
+
+@csrf_exempt
+def cuveEdit(request, pk):
+    cuve = get_object_or_404(Cuve, idcuve=pk)
+    modifierCuve = cuveForm(request.POST or None, instance=cuve)
+    if modifierCuve.is_valid():
+        modifierCuve.save()
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("cuves"))
+    context = {'modifierCuve': modifierCuve}
+    return render(request, folderLocation+'edit/cuveEdit.html', context)
+
+@csrf_exempt
+def cuveInfo(request, pk):
+    cuve = get_object_or_404(Cuve, idcuve=pk)
+    infoCuve = cuveForm(request.POST or None, instance=cuve)
+    context = {'infoCuve': infoCuve}
+    return render(request, folderLocation+'info/cuveInfo.html', context)
+
+@csrf_exempt
+def cuveDelete(request, pk):
+    cuve = get_object_or_404(Cuve, idcuve=pk)
+    if request.method == 'POST':
+        cuve.delete()
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("cuves"))
+    context = {'cuve': cuve}
+    return render(request, folderLocation+'delete/cuveDelete.html', context)
+
+
+# ************* Section Pompe Cuve *************
+
+def pompes(request):
+    pompe = Pompecuve.objects.all()
+    context={'values' : pompe}
+    return render(request, folderLocation+'index/pompe.html', context)
+
+@csrf_exempt
+def pompeCreate(request):
+    if request.method == 'POST':
+        creerPompe = pompeForm(request.POST)
+        if creerPompe.is_valid():
+            creerPompe.save()
+            return HTTPResponseHXRedirect(redirect_to=reverse_lazy("pompes"))
+    else:
+        creerPompe = pompeForm()
+    context={'creerPompe' : creerPompe}
+    return render(request, folderLocation+'create/pompeCreate.html', context)
+
+@csrf_exempt
+def pompeEdit(request, pk):
+    pompe = get_object_or_404(Pompecuve, idpompe=pk)
+    modifierPompe = pompeForm(request.POST or None, instance=pompe)
+    if modifierPompe.is_valid():
+        modifierPompe.save()
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("pompes"))
+    context = {'modifierPompe': modifierPompe}
+    return render(request, folderLocation+'edit/pompeEdit.html', context)
+
+@csrf_exempt
+def pompeInfo(request, pk):
+    pompe = get_object_or_404(Pompecuve, idpompe=pk)
+    infoPompe = pompeForm(request.POST or None, instance=pompe)
+    context = {'infoPompe': infoPompe}
+    return render(request, folderLocation+'info/pompeInfo.html', context)
+
+@csrf_exempt
+def pompeDelete(request, pk):
+    pompe = get_object_or_404(Pompecuve, idpompe=pk)
+    if request.method == 'POST':
+        pompe.delete()
+        return HTTPResponseHXRedirect(redirect_to=reverse_lazy("pompes"))
+    context = {'pompe': pompe}
+    return render(request, folderLocation+'delete/pompeDelete.html', context)

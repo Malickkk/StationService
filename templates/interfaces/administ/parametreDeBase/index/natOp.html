@@ -1,5 +1,7 @@
 
 {% extends "interfaces/administ/indexTemplate.html" %}
+{% load bootstrap_icons %}
+
 {% block title %}Paramètres de base - Nature des Opérations{% endblock %}
 
 {% block pageLink %}{% url 'natOpcreate'  %}{% endblock pageLink %}
@@ -10,15 +12,18 @@
 
 {% block col1 %}Code nature opération{% endblock col1 %}
 {% block col2 %}Libellé opération{% endblock col2 %}
-{% block col3 %}Saisie quantité et valeur{% endblock col3 %}
+{% block col3 %}Saisie quantité{% endblock col3 %}
+{% block col4 %}Saisie valeur{% endblock col4 %}
 
 {% block value1 %}{{val.codope}}{% endblock value1 %}
 {% block value2 %}{{val.libope}}{% endblock value2 %}
-{% block value3 %}Quantité :
-{% if val.saiqte %} Oui {% else %} Non{% endif %}
-- Valeur :
-{% if val.saival %} Oui {% else %} Non{% endif %}
+{% block value3 %}
+{% if val.saiqte %} {% bs_icon 'check-circle' %} {% else %} {% bs_icon 'x-circle-fill' %}{% endif %}
 {% endblock value3 %}
+{% block value4 %}
+{% if val.saival %} {% bs_icon 'check-circle' %} {% else %} {% bs_icon 'x-circle' %}{% endif %}
+{% endblock value4 %}
+
 
 {% block infoLink %}{% url 'natOpinfo' val.pk %}{% endblock infoLink %}
 {% block editLink %}{% url 'natOpedit' val.pk %}{% endblock editLink %}

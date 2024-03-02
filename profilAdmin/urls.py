@@ -4,8 +4,9 @@ from . import views
 
 urlpatterns = [
 
-    path('', views.indexAdmin, name='indexAdmin'),
+    path('', views.index, name='index'),
     path('indexAdmin/', views.indexAdmin, name='indexAdmin'),
+    path('indexGerant/', views.indexGerant, name='indexGerant'),
 
     # ************* Section StationServices *************
     path('stationServices/', views.stationServices, name='stationServices'),
@@ -70,10 +71,24 @@ urlpatterns = [
     path('familleArticleinfo/<str:pk>', views.familleArticleInfo, name='familleArticleinfo'),
     path('familleArticledelete/<int:pk>', views.familleArticleDelete, name='familleArticledelete'),
 
-     # ************* Section Nature des Opérations *************
+    # ************* Section Nature des Opérations *************
     path('natOps/', views.natOps, name='natOps'),
     path('natOpcreate/', views.natOpCreate, name='natOpcreate'),
     path('natOpedit/<str:pk>', views.natOpEdit, name='natOpedit'),
     path('natOpinfo/<str:pk>', views.natOpInfo, name='natOpinfo'),
     path('natOpdelete/<int:pk>', views.natOpDelete, name='natOpdelete'),
+
+    # ************* Section Cuves *************
+    path('cuves/', views.cuves, name='cuves'),
+    path('cuvecreate/', views.cuveCreate, name='cuvecreate'),
+    path('cuveedit/<str:pk>', views.cuveEdit, name='cuveedit'),
+    path('cuveinfo/<str:pk>', views.cuveInfo, name='cuveinfo'),
+    path('cuvedelete/<int:pk>', views.cuveDelete, name='cuvedelete'),
+
+    # ************* Section Pompes cuves *************
+    path('pompes/', views.pompes, name='pompes'),
+    path('pompecreate/', views.pompeCreate, name='pompecreate'),
+    path('pompeedit/<str:pk>', views.pompeEdit, name='pompeedit'),
+    path('pompeinfo/<str:pk>', views.pompeInfo, name='pompeinfo'),
+    path('pompedelete/<int:pk>', views.pompeDelete, name='pompedelete'),
 ]

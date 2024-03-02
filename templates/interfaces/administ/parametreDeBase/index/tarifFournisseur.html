@@ -9,11 +9,13 @@
 
 {% block col1 %}Fournisseurs{% endblock col1 %}
 {% block col2 %}Articles{% endblock col2 %}
-{% block col3 %}Periode de validité{% endblock col3 %}
+{% block col3 %}Montant{% endblock col3 %}
+{% block col4 %}Periode de validité{% endblock col4 %}
 
 {% block value1 %}{{val.idfourn}}{% endblock value1 %}
 {% block value2 %}{{val.idarticle}}{% endblock value2 %}
-{% block value3 %}{{val.datedebut}} - {{val.datefin}}{% endblock value3 %}
+{% block value3 %}{{val.monttarif}}{% endblock value3 %}
+{% block value4 %}{{val.datedebut}} - {{val.datefin}}{% endblock value4 %}
 
 {% block infoLink %}{% url 'tariffournisseurinfo' val.pk %}{% endblock infoLink %}
 {% block editLink %}{% url 'tariffournisseuredit' val.pk %}{% endblock editLink %}

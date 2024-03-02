@@ -1,0 +1,3 @@
+{% extends "interfaces/administ/modalDelete.html" %}
+{% block modalBody %}{{pompe}}{% endblock modalBody %}
+{% block modalDelete %}{% url 'pompedelete' pk=pompe.pk %}{% endblock modalDelete %}

@@ -1,0 +1,24 @@
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Cuves{% endblock %}
+
+{% block pageLink %}{% url 'cuvecreate' %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des cuves{% endblock indexTitle %}
+
+{% block tableTitle %}Mes Cuves{% endblock tableTitle %}
+
+{% block modalLink %}{% url 'cuves' %}{% endblock modalLink %}
+
+{% block col1 %}Nom de cuve{% endblock col1 %}
+{% block col2 %}Libellé de l'article{% endblock col2 %}
+{% block col3 %}Capacité de la cuve{% endblock col3 %}
+{% block col4 %}Code de la station {% endblock col4 %}
+
+{% block value1 %}{{val.nomcuve}} {{val.prenom}}{% endblock value1 %}
+{% block value2 %}{{val.idarticle}}{% endblock value2 %}
+{% block value3 %}{{val.capcuve}}{% endblock value3 %}
+{% block value4 %}{{val.idstation}}{% endblock value4 %}
+
+{% block infoLink %}{% url 'cuveinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'cuveedit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'cuvedelete' val.pk %}{% endblock deleteLink %}

@@ -1,0 +1,25 @@
+{% extends "interfaces/administ/modalTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block modalTitle %}Informations{% endblock modalTitle %}
+{% block modalBody %}
+<fieldset disabled>
+    <div class="row">
+        <div class="col-md-4 mb-0">
+          {{ infoCuve.codecuve|as_crispy_field }}
+        </div>
+        <div class="col-md-8 mb-0">
+          {{ infoCuve.idarticle|as_crispy_field }}
+        </div>
+    </div>
+      {{infoCuve.nomcuve|as_crispy_field}}
+    <div class="row">
+        <div class="col-md-4 mb-0">
+          {{ infoCuve.idstation|as_crispy_field }}
+        </div>
+        <div class="col-md-8 mb-0">
+          {{ infoCuve.capcuve|as_crispy_field }}
+        </div>
+    </div>
+</fieldset>
+{% endblock modalBody %}

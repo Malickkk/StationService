@@ -1,0 +1,8 @@
+{% extends "interfaces/administ/modalTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block modalTitle %}Création d'une pompe{% endblock modalTitle %}
+{% block modalBody %}
+    {{creerPompe|crispy}}
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Créer</button>{% endblock modalButton %}

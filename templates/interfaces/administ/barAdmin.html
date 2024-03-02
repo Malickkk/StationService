@@ -1,11 +1,4 @@
-{% load bootstrap_icons %}
-
-<div class="dropdown show">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {% bs_icon 'three-dots' %}
-  </a>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <h4 class="offcanvas-title" id="offcanvasExampleLabel">Menu Administrateur</h6>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     <a class="dropdown-item" href="{% url 'stationServices' %}">Stations services</a>
@@ -18,11 +11,6 @@
     <a class="dropdown-item" href="{% url 'fournisseurs' %}">Fournisseurs</a>
     <a class="dropdown-item" href="{% url 'tarifFournisseur' %}">Tarifs fournisseurs</a>
     <a class="dropdown-item" href="{% url 'users' %}">Utilisateurs</a>
-  </div>
-</div>
-
-<div class="logo">
-  <div class="btn-group" role="group">
-      <a type=button class="btn" href="{% url 'indexAdmin' %}">Accueil</a>
-  </div>
+    <a class="dropdown-item" href="{% url 'cuves' %}">Cuves</a>
+    <a class="dropdown-item" href="{% url 'pompes' %}">Pompes cuves</a>
 </div>

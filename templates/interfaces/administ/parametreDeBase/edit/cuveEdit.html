@@ -1,0 +1,24 @@
+{% extends "interfaces/administ/modalTemplate.html" %}
+{% load crispy_forms_tags %}
+
+{% block modalTitle %}Modification{% endblock modalTitle %}
+{% block modalBody %}
+<div class="row">
+    <div class="col-md-4 mb-0">
+        {{ modifierCuve.codecuve|as_crispy_field }}
+    </div>
+    <div class="col-md-8 mb-0">
+        {{ modifierCuve.idarticle|as_crispy_field }}
+    </div>
+</div>
+    {{modifierCuve.nomcuve|as_crispy_field}}
+<div class="row">
+    <div class="col-md-4 mb-0">
+        {{ modifierCuve.idstation|as_crispy_field }}
+    </div>
+    <div class="col-md-8 mb-0">
+        {{ modifierCuve.capcuve|as_crispy_field }}
+    </div>
+</div>
+{% endblock modalBody %}
+{% block modalButton %}<button type="submit" class="btn btn-primary">Modifier</button>{% endblock modalButton %}

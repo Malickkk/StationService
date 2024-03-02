@@ -1,0 +1,24 @@
+{% extends "interfaces/administ/indexTemplate.html" %}
+{% block title %}Paramètres de base - Pompes cuves{% endblock %}
+
+{% block pageLink %}{% url 'pompecreate' %}{% endblock pageLink %}
+
+{% block indexTitle %}Gestion des pompes{% endblock indexTitle %}
+
+{% block tableTitle %}Mes Pompes Cuves{% endblock tableTitle %}
+
+{% block modalLink %}{% url 'pompes' %}{% endblock modalLink %}
+
+{% block col1 %}Nom de cuve{% endblock col1 %}
+{% block col2 %}Libellé de l'article{% endblock col2 %}
+{% block col3 %}Station Service{% endblock col3 %}
+{% block col4 %}Description{% endblock col4 %}
+
+{% block value1 %}{{val.idcuve}}{% endblock value1 %}
+{% block value2 %}{{val.idarticle}}{% endblock value2 %}
+{% block value3 %}{{val.idstation}}{% endblock value3 %}
+{% block value4 %}{{val.description}}{% endblock value4 %}
+
+{% block infoLink %}{% url 'pompeinfo' val.pk %}{% endblock infoLink %}
+{% block editLink %}{% url 'pompeedit' val.pk %}{% endblock editLink %}
+{% block deleteLink %}{% url 'pompedelete' val.pk %}{% endblock deleteLink %}

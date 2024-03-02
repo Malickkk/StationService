@@ -69,9 +69,9 @@ class articleForm(forms.ModelForm):
         model = Article
         fields = '__all__'
         labels = {
-            'codArticle': "Code de l'Article", 
-            "nomArticle": "Nom de l'Article",
-            "idfamille": "Famille de l'Article",
+            'codArticle': "Code de l'article", 
+            "nomArticle": "Libellé de l'article",
+            "idfamille": "Famille de l'article",
             }
 
 
@@ -237,3 +237,59 @@ class fournForm(forms.ModelForm):
             'telresp1':"Téléphone 1",
             'telresp2':"Téléphone 2",
         }
+
+class cuveForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(cuveForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            # READ ONLY FIELD FOR THE CODE, CANNOT BE EDITED ONCE CREATED
+            self.fields['codecuve'].widget.attrs['readonly'] = True
+
+    def clean_codecuve(self):
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            return instance.codecuve
+        else:
+            return self.cleaned_data['codecuve']
+    class Meta:
+        model = Cuve
+        fields = '__all__'
+        labels ={
+            'codecuve':"Code cuve",
+            'idarticle':"Libellé de l'article",
+            'nomcuve':"Nom de cuve",
+            'capcuve':"Capacité de la cuve",
+            'idstation':"Code station",
+        }
+
+        def __str__(self):
+            return self.nomcuve
+
+class pompeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(pompeForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            # READ ONLY FIELD FOR THE CODE, CANNOT BE EDITED ONCE CREATED
+            self.fields['codpompe'].widget.attrs['readonly'] = True
+
+    def clean_codpompe(self):
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            return instance.codpompe
+        else:
+            return self.cleaned_data['codpompe']
+    class Meta:
+        model = Pompecuve
+        fields = '__all__'
+        labels ={
+            'codpompe':"Code pompe",
+            'descrpompe':"Description",
+            'idcuve':"Cuve",
+            'idstation':"Code station",
+            'idarticle':"Libellé de l'article",
+        }
+
+        def __str__(self):
+            return self.codpompe
